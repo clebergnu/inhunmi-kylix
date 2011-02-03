@@ -1,0 +1,281 @@
+object CompromissoDM: TCompromissoDM
+  OldCreateOrder = False
+  Left = 401
+  Top = 46
+  Height = 561
+  Width = 367
+  object CompromissoDSet: TSQLClientDataSet
+    CommandText = 'compromisso'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    UpdateMode = upWhereKeyOnly
+    CommandType = ctTable
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 8
+  end
+  object CompromissoDSource: TDataSource
+    DataSet = CompromissoDSet
+    Left = 248
+    Top = 8
+  end
+  object CompromissoCompraDSet: TSQLClientDataSet
+    CommandText = 'SELECT * FROM compromisso_compra WHERE dono = :p_dono'
+    Aggregates = <>
+    AggregatesActive = True
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'p_dono'
+        ParamType = ptInput
+      end>
+    UpdateMode = upWhereKeyOnly
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 72
+    object CompromissoCompraDSetid: TIntegerField
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object CompromissoCompraDSetdono: TIntegerField
+      FieldName = 'dono'
+      Required = True
+    end
+    object CompromissoCompraDSetproduto: TIntegerField
+      FieldName = 'produto'
+      Required = True
+    end
+    object CompromissoCompraDSetquantidade: TIntegerField
+      DisplayLabel = 'Quantidade'
+      FieldName = 'quantidade'
+      Required = True
+    end
+    object CompromissoCompraDSetvalor: TFloatField
+      DisplayLabel = 'Valor'
+      FieldName = 'valor'
+      Required = True
+      currency = True
+    end
+    object CompromissoCompraDSetproduto_descricao: TStringField
+      DisplayLabel = 'Produto'
+      FieldKind = fkLookup
+      FieldName = 'produto_descricao'
+      LookupDataSet = ProdutoDSet
+      LookupKeyFields = 'id'
+      LookupResultField = 'descricao'
+      KeyFields = 'produto'
+      Size = 40
+      Lookup = True
+    end
+    object CompromissoCompraDSetdepartamento_estoque: TIntegerField
+      DisplayLabel = 'Dep. Estoque'
+      FieldName = 'departamento_estoque'
+    end
+    object CompromissoCompraDSetdepartamento_estoque_nome: TStringField
+      DisplayLabel = 'Dep. Estoque'
+      FieldKind = fkLookup
+      FieldName = 'departamento_estoque_nome'
+      LookupDataSet = DepartamentoDSet
+      LookupKeyFields = 'id'
+      LookupResultField = 'nome'
+      KeyFields = 'departamento_estoque'
+      Size = 40
+      Lookup = True
+    end
+    object CompromissoCompraDSettotal: TAggregateField
+      FieldName = 'total'
+      Active = True
+      DisplayFormat = 'R$ ########.00'
+      Expression = 'SUM(valor)'
+    end
+  end
+  object CompromissoDespesaDSet: TSQLClientDataSet
+    CommandText = 'SELECT * FROM compromisso_despesa WHERE dono = :p_dono'
+    Aggregates = <>
+    AggregatesActive = True
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'p_dono'
+        ParamType = ptInput
+      end>
+    UpdateMode = upWhereKeyOnly
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 136
+    object CompromissoDespesaDSetid: TIntegerField
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object CompromissoDespesaDSetdono: TIntegerField
+      FieldName = 'dono'
+      Required = True
+    end
+    object CompromissoDespesaDSetdescricao: TStringField
+      DisplayLabel = 'Servi'#231'o / Despesa'
+      FieldName = 'descricao'
+      Required = True
+      FixedChar = True
+      Size = 80
+    end
+    object CompromissoDespesaDSetvalor: TFloatField
+      DisplayLabel = 'Valor'
+      FieldName = 'valor'
+      Required = True
+      DisplayFormat = 'R$ ########.00'
+    end
+    object CompromissoDespesaDSettotal: TAggregateField
+      FieldName = 'total'
+      Active = True
+      DisplayFormat = 'R$ ########.00'
+      Expression = 'SUM(valor)'
+    end
+  end
+  object CompromissoParcelaDSet: TSQLClientDataSet
+    CommandText = 'SELECT * FROM compromisso_parcela WHERE dono = :p_dono'
+    Aggregates = <>
+    AggregatesActive = True
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'p_dono'
+        ParamType = ptInput
+      end>
+    UpdateMode = upWhereKeyOnly
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 200
+    object CompromissoParcelaDSetid: TIntegerField
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object CompromissoParcelaDSetdono: TIntegerField
+      FieldName = 'dono'
+      Required = True
+    end
+    object CompromissoParcelaDSetsituacao: TStringField
+      DisplayLabel = 'Situa'#231#227'o'
+      FieldName = 'situacao'
+      FixedChar = True
+      Size = 7
+    end
+    object CompromissoParcelaDSetforma_pagamento: TIntegerField
+      FieldName = 'forma_pagamento'
+      Required = True
+    end
+    object CompromissoParcelaDSetvalor: TFloatField
+      DisplayLabel = 'Valor'
+      FieldName = 'valor'
+      Required = True
+      DisplayFormat = 'R$ ########.00'
+    end
+    object CompromissoParcelaDSetforma_pagamento_descricao: TStringField
+      DisplayLabel = 'Forma de Pagamento'
+      FieldKind = fkLookup
+      FieldName = 'forma_pagamento_descricao'
+      LookupDataSet = FormaPagamentoDSet
+      LookupKeyFields = 'id'
+      LookupResultField = 'descricao'
+      KeyFields = 'forma_pagamento'
+      Size = 40
+      Lookup = True
+    end
+    object CompromissoParcelaDSetdata: TDateField
+      DisplayLabel = 'Data'
+      FieldName = 'data'
+    end
+    object CompromissoParcelaDSettotal: TAggregateField
+      FieldName = 'total'
+      Active = True
+      DisplayFormat = 'R$ ########.00'
+      Expression = 'SUM(valor)'
+    end
+  end
+  object CompromissoCompraDSource: TDataSource
+    DataSet = CompromissoCompraDSet
+    Left = 248
+    Top = 72
+  end
+  object CompromissoDespesaDSource: TDataSource
+    DataSet = CompromissoDespesaDSet
+    Left = 248
+    Top = 136
+  end
+  object CompromissoParcelaDSource: TDataSource
+    DataSet = CompromissoParcelaDSet
+    Left = 248
+    Top = 200
+  end
+  object ProdutoDSet: TSQLClientDataSet
+    CommandText = 'SELECT * FROM produto WHERE tipo_comprado = '#39'Sim'#39
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 256
+  end
+  object ProdutoDSource: TDataSource
+    DataSet = ProdutoDSet
+    Left = 248
+    Top = 256
+  end
+  object FormaPagamentoDSet: TSQLClientDataSet
+    CommandText = 'SELECT id, descricao FROM forma_pagamento'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 320
+  end
+  object FormaPagamentoDSource: TDataSource
+    DataSet = FormaPagamentoDSet
+    Left = 248
+    Top = 320
+  end
+  object PessoaDSet: TSQLClientDataSet
+    CommandText = 'SELECT nome, id FROM pessoa_instituicao'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 384
+  end
+  object PessoaDSource: TDataSource
+    DataSet = PessoaDSet
+    Left = 248
+    Top = 384
+  end
+  object DepartamentoDSet: TSQLClientDataSet
+    CommandText = 'SELECT id, nome FROM departamento'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    UpdateMode = upWhereKeyOnly
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 496
+  end
+  object DepartamentoDSource: TDataSource
+    DataSet = DepartamentoDSet
+    Left = 248
+    Top = 496
+  end
+end

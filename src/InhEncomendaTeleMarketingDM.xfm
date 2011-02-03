@@ -1,0 +1,353 @@
+object EncomendaTeleMarketingDM: TEncomendaTeleMarketingDM
+  OldCreateOrder = False
+  Left = 469
+  Top = 39
+  Height = 514
+  VerticalOffset = 18
+  Width = 327
+  object ClienteDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT pessoa_instituicao.nome, pessoa_instituicao_telefone.nume' +
+      'ro as telefone, pessoa_instituicao.id'#13#10'FROM pessoa_instituicao, ' +
+      'pessoa_instituicao_telefone '#13#10'WHERE pessoa_instituicao_telefone.' +
+      'dono = pessoa_instituicao.id AND pessoa_instituicao_telefone.num' +
+      'ero = :p_numero'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftString
+        Name = 'p_numero'
+        ParamType = ptInput
+        Value = '2274402'
+      end>
+    ReadOnly = True
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 272
+  end
+  object ClienteDSource: TDataSource
+    AutoEdit = False
+    DataSet = ClienteDSet
+    Left = 216
+    Top = 272
+  end
+  object ConsumoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT id, dono, produto, produto_quantidade, valor, usuario, de' +
+      'partamento_venda, datahora_inicial FROM consumo WHERE dono = :po' +
+      'rta_consumo_id ORDER BY datahora_inicial'
+    Aggregates = <>
+    AggregatesActive = True
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'porta_consumo_id'
+        ParamType = ptInput
+      end>
+    UpdateMode = upWhereKeyOnly
+    BeforePost = ConsumoDSetBeforePost
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 144
+    object ConsumoDSetid: TIntegerField
+      DefaultExpression = '0'
+      FieldName = 'id'
+      Required = True
+      Visible = False
+    end
+    object ConsumoDSetdono: TIntegerField
+      FieldName = 'dono'
+      Required = True
+      Visible = False
+    end
+    object ConsumoDSetproduto: TIntegerField
+      FieldName = 'produto'
+      Required = True
+      Visible = False
+    end
+    object ConsumoDSetproduto_descricao: TStringField
+      DisplayLabel = 'Produto'
+      FieldKind = fkLookup
+      FieldName = 'produto_descricao'
+      LookupDataSet = ProdutosDSet
+      LookupKeyFields = 'id'
+      LookupResultField = 'descricao'
+      KeyFields = 'produto'
+      Size = 40
+      Lookup = True
+    end
+    object ConsumoDSetproduto_quantidade: TIntegerField
+      DisplayLabel = 'Quantidade'
+      FieldName = 'produto_quantidade'
+      Required = True
+    end
+    object ConsumoDSetvalor: TFloatField
+      DisplayLabel = 'Valor'
+      FieldName = 'valor'
+      Required = True
+      DisplayFormat = 'R$ #######0.00'
+    end
+    object ConsumoDSetusuario: TIntegerField
+      FieldName = 'usuario'
+      Required = True
+      Visible = False
+    end
+    object ConsumoDSetdepartamento_venda: TIntegerField
+      FieldName = 'departamento_venda'
+    end
+    object ConsumoDSetdatahora_inicial: TSQLTimeStampField
+      FieldName = 'datahora_inicial'
+      Required = True
+    end
+    object ConsumoDSettotal: TAggregateField
+      Alignment = taRightJustify
+      AutoGenerateValue = arDefault
+      FieldName = 'total'
+      Active = True
+      DisplayFormat = 'R$ #######0.00'
+      Expression = 'SUM(valor)'
+    end
+  end
+  object ConsumoDSource: TDataSource
+    DataSet = ConsumoDSet
+    Left = 216
+    Top = 144
+  end
+  object PortaConsumoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT * FROM porta_consumo WHERE tipo = 4 AND status = 1 AND us' +
+      'uario = :p_usuario_id ORDER BY datahora_inicial DESC LIMIT 1'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'p_usuario_id'
+        ParamType = ptInput
+      end>
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 8
+    object PortaConsumoDSetid: TIntegerField
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object PortaConsumoDSetnumero: TIntegerField
+      FieldName = 'numero'
+    end
+    object PortaConsumoDSettipo: TStringField
+      FieldName = 'tipo'
+      Required = True
+      FixedChar = True
+      Size = 9
+    end
+    object PortaConsumoDSetstatus: TStringField
+      FieldName = 'status'
+      Required = True
+      FixedChar = True
+      Size = 13
+    end
+    object PortaConsumoDSetdatahora: TSQLTimeStampField
+      FieldName = 'datahora'
+      Required = True
+    end
+    object PortaConsumoDSetdatahora_inicial: TSQLTimeStampField
+      FieldName = 'datahora_inicial'
+      Required = True
+    end
+    object PortaConsumoDSetdatahora_final: TSQLTimeStampField
+      FieldName = 'datahora_final'
+    end
+    object PortaConsumoDSetdono: TIntegerField
+      FieldName = 'dono'
+    end
+    object PortaConsumoDSetusuario: TIntegerField
+      FieldName = 'usuario'
+    end
+    object PortaConsumoDSetstatus_anterior: TStringField
+      FieldName = 'status_anterior'
+      Required = True
+      FixedChar = True
+      Size = 13
+    end
+  end
+  object EncomendaDSet: TSQLClientDataSet
+    CommandText = 'SELECT * FROM encomenda WHERE dono = :p_porta_consumo_id'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'p_porta_consumo_id'
+        ParamType = ptInput
+      end>
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 72
+    object EncomendaDSetdono: TIntegerField
+      FieldName = 'dono'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object EncomendaDSettipo_entrega: TStringField
+      DefaultExpression = #39'N?o'#39
+      FieldName = 'tipo_entrega'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object EncomendaDSetlocal_entrega: TStringField
+      FieldName = 'local_entrega'
+      Size = 200
+    end
+    object EncomendaDSettaxa_entrega: TFloatField
+      AutoGenerateValue = arDefault
+      DefaultExpression = '0.00'
+      FieldName = 'taxa_entrega'
+      DisplayFormat = '#######0.00'
+    end
+    object EncomendaDSetobservacoes: TStringField
+      FieldName = 'observacoes'
+      Size = 255
+    end
+    object EncomendaDSetdatahora_entrega: TSQLTimeStampField
+      FieldName = 'datahora_entrega'
+      Required = True
+      EditMask = '##/##/#### ##:##'
+    end
+    object EncomendaDSetusuario: TIntegerField
+      FieldName = 'usuario'
+      Required = True
+    end
+  end
+  object PortaConsumoDSource: TDataSource
+    DataSet = PortaConsumoDSet
+    Left = 216
+    Top = 8
+  end
+  object EncomendaDSource: TDataSource
+    DataSet = EncomendaDSet
+    Left = 216
+    Top = 72
+  end
+  object ProdutosDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT * FROM produto WHERE tipo_vendido = '#39'Sim'#39' AND tipo_genera' +
+      'lizado = '#39'N?o'#39' ORDER BY descricao'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 208
+    object ProdutosDSetdescricao: TStringField
+      DisplayLabel = 'Produto'
+      FieldName = 'descricao'
+      Required = True
+      FixedChar = True
+      Size = 40
+    end
+    object ProdutosDSetpreco_venda: TFloatField
+      DisplayLabel = 'Pre?o Venda'
+      DisplayWidth = 8
+      FieldName = 'preco_venda'
+    end
+    object ProdutosDSetid: TIntegerField
+      DisplayLabel = 'C?digo'
+      FieldName = 'id'
+      Required = True
+    end
+    object ProdutosDSettipo_comprado: TStringField
+      FieldName = 'tipo_comprado'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object ProdutosDSettipo_vendido: TStringField
+      FieldName = 'tipo_vendido'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object ProdutosDSettipo_produzido: TStringField
+      FieldName = 'tipo_produzido'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object ProdutosDSettipo_meta_grupo: TStringField
+      FieldName = 'tipo_meta_grupo'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object ProdutosDSettipo_generalizado: TStringField
+      FieldName = 'tipo_generalizado'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object ProdutosDSetunidade: TStringField
+      FieldName = 'unidade'
+      Required = True
+      FixedChar = True
+      Size = 9
+    end
+    object ProdutosDSetgrupo: TIntegerField
+      FieldName = 'grupo'
+    end
+    object ProdutosDSetdepartamento_compra: TIntegerField
+      FieldName = 'departamento_compra'
+    end
+    object ProdutosDSetdepartamento_venda: TIntegerField
+      FieldName = 'departamento_venda'
+    end
+    object ProdutosDSetdepartamento_producao: TIntegerField
+      FieldName = 'departamento_producao'
+    end
+    object ProdutosDSetdepartamento_estoque: TIntegerField
+      FieldName = 'departamento_estoque'
+    end
+    object ProdutosDSetestoque_minimo: TIntegerField
+      FieldName = 'estoque_minimo'
+    end
+  end
+  object ProdutosDSource: TDataSource
+    DataSet = ProdutosDSet
+    Left = 216
+    Top = 208
+  end
+  object EnderecoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT CONCAT_WS('#39', '#39', endereco_logradouro, endereco_numero, end' +
+      'ereco_apartamento, endereco_complemento, endereco_bairro, endere' +
+      'co_referencia) as endereco FROM pessoa_instituicao_endereco WHER' +
+      'E dono = :pessoa_instituicao_id'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pessoa_instituicao_id'
+        ParamType = ptInput
+      end>
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 310
+  end
+  object EnderecoDSource: TDataSource
+    AutoEdit = False
+    DataSet = EnderecoDSet
+    Left = 216
+    Top = 310
+  end
+end

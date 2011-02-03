@@ -1,0 +1,12 @@
+#!/bin/bash
+
+LANG=en_US
+
+PATH=./:$PATH
+LD_LIBRARY_PATH=:/usr/lib:/home/donkey/kylix3/bin:$LD_LIBRARY_PATH
+CLX_USE_LIBQT=TRUE
+
+export LANG LD_LIBRARY_PATH PATH CLX_USE_LIBQT
+
+#strace Inhunmi 2> strace_log
+exec Inhunmi

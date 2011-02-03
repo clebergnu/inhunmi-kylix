@@ -1,0 +1,131 @@
+object AcessoDM: TAcessoDM
+  OldCreateOrder = False
+  Left = 511
+  Top = 385
+  Height = 114
+  Width = 215
+  object AcessoDSet: TSQLClientDataSet
+    CommandText = 'acesso'
+    Aggregates = <>
+    FetchOnDemand = False
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    UpdateMode = upWhereKeyOnly
+    BeforePost = AcessoDSetBeforePost
+    AfterPost = AcessoDSetAfterPost
+    BeforeDelete = AcessoDSetBeforeDelete
+    CommandType = ctTable
+    DBConnection = MainDM.MainConnection
+    Left = 40
+    Top = 16
+    object AcessoDSetid: TIntegerField
+      DefaultExpression = '0'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object AcessoDSetusuario: TStringField
+      FieldName = 'usuario'
+      Required = True
+      FixedChar = True
+      Size = 16
+    end
+    object AcessoDSettabela_pessoa: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'tabela_pessoa'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object AcessoDSettabela_instituicao: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'tabela_instituicao'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object AcessoDSettabela_departamento: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'tabela_departamento'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object AcessoDSettabela_produto: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'tabela_produto'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object AcessoDSettabela_produto_grupo: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'tabela_produto_grupo'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object AcessoDSettabela_encomenda: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'tabela_encomenda'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object AcessoDSettabela_consumo: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'tabela_consumo'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object AcessoDSettabela_forma_pagamento: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'tabela_forma_pagamento'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object AcessoDSettabela_compromisso: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'tabela_compromisso'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object AcessoDSetatendimento: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'atendimento'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object AcessoDSetcaixa: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'caixa'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object AcessoDSetacesso: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'acesso'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object AcessoDSetconfiguracao: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'configuracao'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+  end
+  object AcessoDSource: TDataSource
+    DataSet = AcessoDSet
+    Left = 136
+    Top = 16
+  end
+end

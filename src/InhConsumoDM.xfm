@@ -1,0 +1,74 @@
+object ConsumoDM: TConsumoDM
+  OldCreateOrder = False
+  Left = 532
+  Top = 240
+  Height = 177
+  Width = 271
+  object ConsumoDSet: TSQLClientDataSet
+    CommandText = 'consumo'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    UpdateMode = upWhereKeyOnly
+    BeforePost = ConsumoDSetBeforePost
+    AfterPost = ConsumoDSetAfterPost
+    BeforeDelete = ConsumoDSetBeforeDelete
+    CommandType = ctTable
+    DBConnection = MainDM.MainConnection
+    Left = 48
+    Top = 24
+    object ConsumoDSetid: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'id'
+      Required = True
+    end
+    object ConsumoDSetdono: TIntegerField
+      DisplayLabel = 'Porta Consumo'
+      FieldName = 'dono'
+      Required = True
+    end
+    object ConsumoDSetdatahora: TSQLTimeStampField
+      DisplayLabel = 'Data / Hora'
+      FieldName = 'datahora'
+      Required = True
+    end
+    object ConsumoDSetproduto: TIntegerField
+      DisplayLabel = 'Produto'
+      FieldName = 'produto'
+      Required = True
+    end
+    object ConsumoDSetproduto_quantidade: TIntegerField
+      DisplayLabel = 'Quantidade'
+      FieldName = 'produto_quantidade'
+      Required = True
+    end
+    object ConsumoDSetvalor: TFloatField
+      DisplayLabel = 'Valor'
+      FieldName = 'valor'
+      DisplayFormat = '########.00'
+      currency = True
+    end
+  end
+  object ConsumoDSource: TDataSource
+    DataSet = ConsumoDSet
+    Left = 168
+    Top = 24
+  end
+  object ProdutoDSet: TSQLClientDataSet
+    CommandText = 'SELECT id, descricao FROM produto WHERE tipo_vendido = 1'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    ReadOnly = True
+    DBConnection = MainDM.MainConnection
+    Left = 48
+    Top = 88
+  end
+  object ProdutoDSource: TDataSource
+    DataSet = ProdutoDSet
+    Left = 168
+    Top = 88
+  end
+end

@@ -1,0 +1,68 @@
+inherited InhCaixaTipoTrocoDlgForm: TInhCaixaTipoTrocoDlgForm
+  Left = 271
+  Top = 188
+  Width = 310
+  Height = 111
+  HorzScrollBar.Range = 305
+  VertScrollBar.Range = 105
+  ActiveControl = FormaPagamentoDBLookupComboBox
+  Caption = 'Inhunmi - Tipo do troco'
+  Constraints.MaxHeight = 111
+  Constraints.MaxWidth = 310
+  Constraints.MinHeight = 111
+  Constraints.MinWidth = 310
+  Position = poDesktopCenter
+  PixelsPerInch = 75
+  TextHeight = 15
+  TextWidth = 7
+  inherited CancelarSpeedButton: TSpeedButton
+    Left = 88
+    Top = 72
+    Visible = False
+  end
+  inherited OkSpeedButton: TSpeedButton
+    Left = 200
+    Top = 72
+  end
+  inherited Bevel1: TBevel
+    Top = 56
+    Width = 297
+  end
+  object FormaPagamentoDBLookupComboBox: TDBLookupComboBox
+    Left = 8
+    Top = 32
+    Width = 297
+    Height = 25
+    KeyField = 'id'
+    ListField = 'descricao'
+    ListFieldIndex = 1
+    ListSource = FormaPagamentoDSource
+    TabOrder = 0
+    OnKeyPress = FormaPagamentoDBLookupComboBoxKeyPress
+  end
+  object FormaPagamentoLabel: TLabel
+    Left = 8
+    Top = 8
+    Width = 133
+    Height = 15
+    Caption = '&Escolha o tipo do troco:'
+    FocusControl = FormaPagamentoDBLookupComboBox
+  end
+  object FormaPagamentoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT id, descricao FROM forma_pagamento ORDER BY tipo_contra_v' +
+      'ale'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 8
+    Top = 72
+  end
+  object FormaPagamentoDSource: TDataSource
+    DataSet = FormaPagamentoDSet
+    Left = 40
+    Top = 72
+  end
+end

@@ -1,0 +1,63 @@
+[Ajuda]
+;Caminho completo para arquivo a ser usado como ajuda.
+ArquivoDeAjuda=/usr/local/share/doc/inhunmi-kylix/inhunmi-user.html
+
+[ServidorDeDados]
+Driver=MySQL
+Host=localhost
+BancoDeDados=inhunmi
+
+[Impressao]
+;Cabeçalhos usados em relatorios
+CabecalhoLinha1==   B O M    B I S C O I T O    &    C I A.    =
+CabecalhoLinha2==    Av. 13 de Maio 866, Bairro de Fatima.     =
+CabecalhoLinha3==             Fone: (85) 227.5974              =
+RodapeLinha1=
+RodapeLinha2=
+RodapeLinha3=
+
+[Impressora-encomenda]
+LinhasAdicionais=10
+
+[Impressora-caixa01]
+LinhasAdicionais=10
+
+[Impressora-caixa01]
+LinhasAdicionais=10
+
+
+[Atendimento]
+;Tipo inicialmente exibido na tela de atendimento
+;Valores aceitos são: Cartao, Mesa, Balcao, Encomenda e Todos.
+TipoPadrao=Todos
+
+;Status inicialmente exibido na tela de atendimento
+;Valores aceitos são: Aberto, Fechado, Em Fechamento, Pendente, Outro e Todos.
+StatusPadrao=Aberto
+
+;Valor, em segundos, da atualizacao dos Porta-Consumos exibidos
+IntervaloDeAtualizacao=20
+
+;Exibir Porta-Consumos em estado "Aberto", criados a partir X dias no passado.
+;Se igual a 0, não especifica uma data inicial
+;PortaConsumosAbertosDiasPassados=5
+
+;Exibir Porta-Consumos em estado "Aberto", programados para X dias no futuro.
+;Util para encomendas, que possuem o data programada para o futuro.
+;Se igual a 0, não especifica uma data final
+;PortaConsumosAbertosDiasFuturos=5
+
+;Exibir Porta-Consumos em estado "Fechado", fechados a partir X dias no passado.
+;Se igual a 0, não especifica uma data inicial
+;PortaConsumosFechadosDiasPassados=1
+
+;Ao exibir diversos tipo, como por exemplo 'Todos', usar estes valores
+DiasPassados=1
+DiasFuturos=5
+
+[Caixa]
+;Codigo das formas de pagamento a serem exibidas por padrão
+FormaDePagamento1=1
+FormaDePagamento2=2
+FormaDePagamento3=3
+FormaDePagamento4=4

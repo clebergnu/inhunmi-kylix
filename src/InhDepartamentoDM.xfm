@@ -1,0 +1,39 @@
+object DepartamentoDM: TDepartamentoDM
+  OldCreateOrder = False
+  Left = 509
+  Top = 340
+  Height = 150
+  Width = 269
+  object DepartamentoDSet: TSQLClientDataSet
+    CommandText = 'departamento'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    AfterPost = InhDepartamentoMasterAfterPost
+    BeforeDelete = DepartamentoDSetBeforeDelete
+    CommandType = ctTable
+    DBConnection = MainDM.MainConnection
+    Left = 48
+    Top = 16
+    object DepartamentoDSetid: TIntegerField
+      DefaultExpression = '0'
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object DepartamentoDSetnome: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'nome'
+      Required = True
+      FixedChar = True
+      Size = 40
+    end
+  end
+  object DepartamentoDSource: TDataSource
+    DataSet = DepartamentoDSet
+    Left = 176
+    Top = 16
+  end
+end

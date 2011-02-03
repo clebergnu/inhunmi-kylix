@@ -1,0 +1,706 @@
+inherited InhPessoaForm: TInhPessoaForm
+  Left = 258
+  Top = 193
+  HorzScrollBar.Range = 625
+  ActiveControl = IdDbEdit
+  Caption = 'Inhunmi - Pessoas'
+  Icon.Data = {
+    424D460900000000000036040000280000002400000024000000010008000000
+    000010050000120B0000120B00000001000000010000FFFFFF00020202008EAA
+    C0005E6E7E003E4A52002E261E008296A600A2BED600323E48000C1626006266
+    6A006C8AA200A2CAEA00261E12003236360012161600625E5A007A828A004232
+    2600BAD6EA0016120A002E4A620016222E0086AED60080A2C2006A7E92002E2E
+    2E00465A6A000A0E0E00283E52004E6E8A00C6E2FA003F5262004A5E6E001626
+    3E00060A0A007696B60036322E00A5BACD0095BEE6002A3642001E2A32004F66
+    7D00B3D2EE008AAAC700667A8A00425E76006F8EAE003D56710026323E00ADD6
+    F900132232001A2E42002B425A0067829D00101E3200263A52003E2A16008EA6
+    BA00B2D6F600324252004A668600364E6A00181E26007A8E9E00A2C2E2005972
+    8A000B1622008EB2DA009FCAF30086AAD20036526A0021364D00495E72001926
+    3200AED2F2001A1A1A00384A5E003C4A56001F3247000A06020094AEC6000D12
+    16009AC2E60042424200222E3600627686007A8EA200819EBD00869EAE002636
+    4700C6DEF800566E8600596A7A003E5A7A004B56610036424A00B6D2EA00454E
+    5600101E2E00182636006886A200CADEF2005C768E001A22260037465A007996
+    AF009CC6EF00AEC6DE0026323A003A46520012223A005466760011161E00789A
+    BD00637A9200090A0E004F6276000E1A2E00A4CEF8008CAECE00BEDAF600819A
+    AE001C2A3A0090B6DA003D4E5E007EA2C6002F465A001D2E3D0076869A005A62
+    66007292AA00526A7E009FBEDD00AECAE6002D3A46003E3A3600527292004152
+    6600141A1E0096AAC0001222360062728200172A3E0092BAE20042566A006C86
+    9E0092B2D2000A121E00394E6300B8D6F2002A4662000F1A26001E262E007292
+    AE00B8DAFA0016263A001A1E2200607E9600465A6E0003060600405E7B003A46
+    4E00A8D2F9006E8EAA001A2A360086AACE0058626E00CBE2FA0066768A00121E
+    2A00768EAA00424A5200829AB60099AEBF002232420052728E001A1616002E3A
+    4A000F1A2A00232E3A005E7286007F96AD002E3E4E002A363E00C5E2FE004666
+    8200C6DEFE004A566600414E5A004A627A009AB2C800BEDEFC00324E66003E42
+    4A002D465E00323A420096B2CE00C2DAEE0082A6CA0042627E0046525A001116
+    1A0037465600596E82002E425600495E76001B222A005E7A9600A2C2DE007D92
+    A70046525E00212A3600314A66000B0E1200586A7E007C9AB200526A82000E1A
+    2200627E9A00425A720006060A004E6A8800B6CEE600BEDAF2004A4E50005662
+    7200273E56003A4A5A003E4E6200515E6D000E0A0600566E8A001E2636002C32
+    3900AED2FA0059728E00151A2200020206006C8AA60034424E008EB6DE007292
+    B2002A324200AAC2D60082929E0086AED200A2C6E600464646008292A2005A76
+    9200060A12006A86A600BFD6EE001B2E46002A425E0000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000050949DCF29D4D43F52EE000000000000000000
+    000000000000000000000000000000A03F5A083C8AE53CB2877B995200000000
+    0000000000000000000000000000000000008B87E4CEB0FAEC89FA5C9F6E3199
+    D60000000000000000000000000000000000000000CFE49F1EEF24723636D0D0
+    5C91CBB4AAA0000000000000000000000000000000000000297D2A3672464618
+    DB675C5CDE494D87B40F0000000000000000000000000000000000EDE542FCC7
+    F190F672D9E5CB6EE48A4DB7D4D401000000000000000000000000000000008A
+    422FC79027F1C77DD67423DD74D6CA28F3280100000000000000000000000000
+    00009984F2F6906B27A428CF7042D0FABEEA7152EA31DD000000000000000000
+    000000000000CE2FF1276B456A3CBC022B776BC79A42D97D4E284A0000000000
+    000000000000000000019A536B45A3F7927A8679C079936ECA52F3D770F03101
+    00000000000000000000000000017C457777A3A32BBBA8A81FA886B69ECA685D
+    034E3101000000000000000000000000CFCCC727773232C05B1F5BA8A8A81F4B
+    C774088E032031010000000000000000000000842465D02E1827A39B79E013C6
+    66667977EACA70568EE2C48B0000000000000000000021589A4DCD645C9A7C41
+    BFB681F58C86DF7A0FEA70CC8EA76ED400000000000000000000657375168F76
+    E35C6573C91A05F8ACD207C9DDB260C4BD5FF0D4000000000000000000008321
+    20984F8FAF804D87EA12391011CC3A606862540D25EA31550000000000000000
+    0000D85D70645E97E337093114E7504CACCC02E65C7D4C1488EA55D400000000
+    0000000000002C5DD01589A15EE343A547D47187E251612BD16A75B2CF524A29
+    00000000000000000000F758BE483E92FFC133B3CDDC286457DF1FBB4B85786A
+    671BF0990100000000000000000024DC524F35D049C33E76631D9FA5B7AE61A8
+    FD85F6189ECE4D280100000000000000000098D6019CBAC1D291BA483737AF47
+    AA0326C6618502B6422A4E4E01000000000000000000008B1C98C81E1E02C3B0
+    8D37B364313140266CBFA4675C694FD4010000000000000000000060AC7B480B
+    303E022EA19C6F76B3765A19B6368484476333FB010000000000000000000074
+    5FAC35E56A4915A4DED59C337616B3F070CC75954A649C010000000000000000
+    000000009DE60B919F7A1EE33EE3FE8D37AA164A2095AF64E3D5B30100000000
+    000000000000000052EAD20BC3C33A679C6F9C8D6FB3B34364333815C37B0101
+    00000000000000000000000000744E59587D5AD89F8D8F8D9C33099894B38F97
+    FF71010000000000000000000000000000001CA78CF4D938FF4F8D9C37336363
+    4736BFA9CA01010000000000000000000000000000000074E1F526927F8F228D
+    9C8D8D800BD26E740101000000000000000000000000000000000000013FE61B
+    E598944343431616AC0AE10F0100000000000000000000000000000000000000
+    0000019D0F010101000000000101000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    00000000000000000000000CC51C322356C493214C212AA96391C22451F42695
+    1C8BB862623F319BBB82E8A0A555BA1500000000000000000000003F99B1DEC4
+    0E5BE0D74B6FABDCB62D8E30F66DCC8746B87FC83862C331C5285F7BD395A1BF
+    00000000000000000000001699590E9C17DC49FDCD8C483E7D6357D082F6BACC
+    9D8B8AC8C88A3F2F45B19BB70B3CA7A75E0000000000000000000000008E9C01
+    B03EABD829DD2A48C22DA90A54D324CC364F65B89E8A3F31C54DB2ECBDBC87C2
+    0700000000000000000000000022001EA9C4133E7B2919496F2A2DA9A9DC378E
+    9A95B3BE2C2CF7BE7728D7DA0B64A7BC2200000000000000000000000000BF1E
+    B64CD248707946BCC449177D2D0A916C17CC1BB308F7A4DFB2687B7CBCD0B019
+    0700000000000000000000000014EA419AF848D748ABDE83E6703E8C8C7D0A17
+    519ADDBB664D4DE594E6FA25AB17DC173D000000000000000000000000D5AEB9
+    919FAB98325B566868E06B0E8C9F2D9A0A7DB6A7DAAAAA948D2E0BC2919A1707
+    1E0000000000000000000000001E968FD4782AAB4D32D04CECF5D2D22A8C2D0A
+    A9A957F4FE828DFABD30CF919A8C9F1E00010000000000000000000000003DD5
+    E468704B472C11D05B4823CD6F3A8C8CA90A6CF41792300BBC4B96B6DC5B2A00
+    00010000000000000000000000001EBFCA1B79D84BD0DBDBD36C4B9F3ADC9F8C
+    2D9A6317577895DDA9635413255B9C1E01000000000000000000000000000022
+    73A37489489F9211C60B9F7D9F9F9F9F9F9AB67DF496B57DDDAB563E3AF4011E
+    00000000000000000000000000000000411F27E511882A95CE89CD8C8C9FFF8C
+    8C8CB69663B6339A3AD0CDD0B59C1E0100000000000000000000000000000000
+    0022720929EE1CA7562E703A8CDCDC178C17639A0A7DF8F9300B494B961E1E01
+    00000000000000000000000000000000000086840D023968C2F93E0E9F8C9FFF
+    8CFF7D2D57D06BB7C697E841011E010000000000000000000000000000000000
+    0000009C260DB38B4D32D09FDCDC9FFF9FFF8CFF9FBC7968CA071E1E1E000100
+    00000000000000000000000000000000000000000107D40D74BDBD0E177D8C8C
+    FF8C574BCB403B083B0422010100000000000000000000000000000000000000
+    00000000001E5E1D1A76D4071E9C9C3D3D3D00000010F2F01422000000000000
+    00000000000000000000000000000000000000000000001E078686001E010100
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000000000000001010101000101000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    00000000000000000000000000000000000000000000}
+  Position = poMainFormCenter
+  PixelsPerInch = 75
+  inherited ToolbarPanel: TPanel
+    TabOrder = 2
+    inherited LogoImage: TImage
+      Picture.Data = {
+        07544269746D61704A090000424D460900000000000036040000280000002400
+        000024000000010008000000000010050000120B0000120B0000000100000001
+        0000FFFFFF00020202008EAAC0005E6E7E003E4A52002E261E008296A600A2BE
+        D600323E48000C16260062666A006C8AA200A2CAEA00261E1200323636001216
+        1600625E5A007A828A0042322600BAD6EA0016120A002E4A620016222E0086AE
+        D60080A2C2006A7E92002E2E2E00465A6A000A0E0E00283E52004E6E8A00C6E2
+        FA003F5262004A5E6E0016263E00060A0A007696B60036322E00A5BACD0095BE
+        E6002A3642001E2A32004F667D00B3D2EE008AAAC700667A8A00425E76006F8E
+        AE003D56710026323E00ADD6F900132232001A2E42002B425A0067829D00101E
+        3200263A52003E2A16008EA6BA00B2D6F600324252004A668600364E6A00181E
+        26007A8E9E00A2C2E20059728A000B1622008EB2DA009FCAF30086AAD2003652
+        6A0021364D00495E720019263200AED2F2001A1A1A00384A5E003C4A56001F32
+        47000A06020094AEC6000D1216009AC2E60042424200222E3600627686007A8E
+        A200819EBD00869EAE0026364700C6DEF800566E8600596A7A003E5A7A004B56
+        610036424A00B6D2EA00454E5600101E2E00182636006886A200CADEF2005C76
+        8E001A22260037465A007996AF009CC6EF00AEC6DE0026323A003A4652001222
+        3A005466760011161E00789ABD00637A9200090A0E004F6276000E1A2E00A4CE
+        F8008CAECE00BEDAF600819AAE001C2A3A0090B6DA003D4E5E007EA2C6002F46
+        5A001D2E3D0076869A005A6266007292AA00526A7E009FBEDD00AECAE6002D3A
+        46003E3A36005272920041526600141A1E0096AAC0001222360062728200172A
+        3E0092BAE20042566A006C869E0092B2D2000A121E00394E6300B8D6F2002A46
+        62000F1A26001E262E007292AE00B8DAFA0016263A001A1E2200607E9600465A
+        6E0003060600405E7B003A464E00A8D2F9006E8EAA001A2A360086AACE005862
+        6E00CBE2FA0066768A00121E2A00768EAA00424A5200829AB60099AEBF002232
+        420052728E001A1616002E3A4A000F1A2A00232E3A005E7286007F96AD002E3E
+        4E002A363E00C5E2FE0046668200C6DEFE004A566600414E5A004A627A009AB2
+        C800BEDEFC00324E66003E424A002D465E00323A420096B2CE00C2DAEE0082A6
+        CA0042627E0046525A0011161A0037465600596E82002E425600495E76001B22
+        2A005E7A9600A2C2DE007D92A70046525E00212A3600314A66000B0E1200586A
+        7E007C9AB200526A82000E1A2200627E9A00425A720006060A004E6A8800B6CE
+        E600BEDAF2004A4E500056627200273E56003A4A5A003E4E6200515E6D000E0A
+        0600566E8A001E2636002C323900AED2FA0059728E00151A2200020206006C8A
+        A60034424E008EB6DE007292B2002A324200AAC2D60082929E0086AED200A2C6
+        E600464646008292A2005A769200060A12006A86A600BFD6EE001B2E46002A42
+        5E00000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000050949DCF29D4D4
+        3F52EE000000000000000000000000000000000000000000000000A03F5A083C
+        8AE53CB2877B9952000000000000000000000000000000000000000000008B87
+        E4CEB0FAEC89FA5C9F6E3199D600000000000000000000000000000000000000
+        00CFE49F1EEF24723636D0D05C91CBB4AAA00000000000000000000000000000
+        00000000297D2A3672464618DB675C5CDE494D87B40F00000000000000000000
+        00000000000000EDE542FCC7F190F672D9E5CB6EE48A4DB7D4D4010000000000
+        00000000000000000000008A422FC79027F1C77DD67423DD74D6CA28F3280100
+        00000000000000000000000000009984F2F6906B27A428CF7042D0FABEEA7152
+        EA31DD000000000000000000000000000000CE2FF1276B456A3CBC022B776BC7
+        9A42D97D4E284A0000000000000000000000000000019A536B45A3F7927A8679
+        C079936ECA52F3D770F0310100000000000000000000000000017C457777A3A3
+        2BBBA8A81FA886B69ECA685D034E3101000000000000000000000000CFCCC727
+        773232C05B1F5BA8A8A81F4BC774088E03203101000000000000000000000084
+        2465D02E1827A39B79E013C666667977EACA70568EE2C48B0000000000000000
+        000021589A4DCD645C9A7C41BFB681F58C86DF7A0FEA70CC8EA76ED400000000
+        000000000000657375168F76E35C6573C91A05F8ACD207C9DDB260C4BD5FF0D4
+        00000000000000000000832120984F8FAF804D87EA12391011CC3A606862540D
+        25EA315500000000000000000000D85D70645E97E337093114E7504CACCC02E6
+        5C7D4C1488EA55D4000000000000000000002C5DD01589A15EE343A547D47187
+        E251612BD16A75B2CF524A2900000000000000000000F758BE483E92FFC133B3
+        CDDC286457DF1FBB4B85786A671BF0990100000000000000000024DC524F35D0
+        49C33E76631D9FA5B7AE61A8FD85F6189ECE4D280100000000000000000098D6
+        019CBAC1D291BA483737AF47AA0326C6618502B6422A4E4E0100000000000000
+        0000008B1C98C81E1E02C3B08D37B364313140266CBFA4675C694FD401000000
+        0000000000000060AC7B480B303E022EA19C6F76B3765A19B6368484476333FB
+        0100000000000000000000745FAC35E56A4915A4DED59C337616B3F070CC7595
+        4A649C010000000000000000000000009DE60B919F7A1EE33EE3FE8D37AA164A
+        2095AF64E3D5B30100000000000000000000000052EAD20BC3C33A679C6F9C8D
+        6FB3B34364333815C37B010100000000000000000000000000744E59587D5AD8
+        9F8D8F8D9C33099894B38F97FF71010000000000000000000000000000001CA7
+        8CF4D938FF4F8D9C373363634736BFA9CA010100000000000000000000000000
+        00000074E1F526927F8F228D9C8D8D800BD26E74010100000000000000000000
+        0000000000000000013FE61BE598944343431616AC0AE10F0100000000000000
+        0000000000000000000000000000019D0F010101000000000101000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000000000000000000}
+    end
+  end
+  object NomeDbEdit: TDBEdit [1]
+    Left = 216
+    Top = 37
+    Width = 401
+    Height = 23
+    DataField = 'nome'
+    DataSource = PessoaDM.PessoaInstituicaoDSource
+    MaxLength = 10
+    TabOrder = 1
+  end
+  object IdDbEdit: TDBEdit [2]
+    Left = 176
+    Top = 6
+    Width = 57
+    Height = 23
+    TabStop = False
+    Color = clNormalBackground
+    DataField = 'id'
+    DataSource = PessoaDM.PessoaInstituicaoDSource
+    MaxLength = 8
+    ReadOnly = True
+    TabOrder = 0
+  end
+  inherited Navigator: TDBNavigator
+    TabOrder = 3
+  end
+  object IdLabel: TLabel [5]
+    Left = 120
+    Top = 12
+    Width = 43
+    Height = 15
+    Caption = '&C'#243'digo:'
+    FocusControl = IdDbEdit
+  end
+  object NomeCompletoLabel: TLabel [6]
+    Left = 120
+    Top = 40
+    Width = 91
+    Height = 15
+    Caption = 'Nome C&ompleto:'
+    FocusControl = NomeDbEdit
+  end
+  object GroupBox: TGroupBox [7]
+    Left = 112
+    Top = 64
+    Width = 513
+    Height = 337
+    BorderStyle = bsNone
+    TabOrder = 7
+    object TratamentoDbComboBox: TDBComboBox
+      Left = 104
+      Top = 8
+      Width = 73
+      Height = 21
+      Style = csOwnerDrawFixed
+      DataField = 'tratamento'
+      DataSource = PessoaDM.PessoaDSource
+      ItemHeight = 15
+      Items.Strings = (
+        'Sr.'
+        'Sra.'
+        'Srta.')
+      TabOrder = 0
+    end
+    object NomeFavoritoDbEdit: TDBEdit
+      Left = 184
+      Top = 8
+      Width = 113
+      Height = 23
+      DataField = 'nome_favorito'
+      DataSource = PessoaDM.PessoaDSource
+      MaxLength = 18
+      TabOrder = 1
+    end
+    object NomeFavoritoLabel: TLabel
+      Left = 10
+      Top = 12
+      Width = 85
+      Height = 15
+      Caption = '&Nome Favorito:'
+      FocusControl = TratamentoDbComboBox
+    end
+    object DataNascimentoDbEdit: TDBEdit
+      Left = 392
+      Top = 8
+      Width = 113
+      Height = 23
+      DataField = 'data_nascimento'
+      DataSource = PessoaDM.PessoaDSource
+      MaxLength = 20
+      TabOrder = 3
+    end
+    object DataNascimentoLabel: TLabel
+      Left = 320
+      Top = 12
+      Width = 68
+      Height = 15
+      Caption = 'Nasci&mento:'
+      FocusControl = DataNascimentoDbEdit
+    end
+    object RGDbEdit: TDBEdit
+      Left = 184
+      Top = 42
+      Width = 113
+      Height = 23
+      DataField = 'rg'
+      DataSource = PessoaDM.PessoaDSource
+      MaxLength = 8
+      TabOrder = 5
+    end
+    object RGLabel: TLabel
+      Left = 160
+      Top = 46
+      Width = 20
+      Height = 15
+      Caption = '&RG:'
+      FocusControl = RGDbEdit
+    end
+    object CPFDbEdit: TDBEdit
+      Left = 392
+      Top = 42
+      Width = 114
+      Height = 23
+      Anchors = [akTop, akRight]
+      DataField = 'cpf'
+      DataSource = PessoaDM.PessoaDSource
+      MaxLength = 9
+      TabOrder = 7
+    end
+    object CPFLabel: TLabel
+      Left = 358
+      Top = 46
+      Width = 28
+      Height = 15
+      Caption = 'C&PF:'
+      FocusControl = CPFDbEdit
+    end
+    object DetailsPageControl: TPageControl
+      Left = 0
+      Top = 184
+      Width = 505
+      Height = 153
+      ActivePage = TelefoneTabSheet
+      Font.Color = clBlack
+      Font.Height = 13
+      Font.Name = 'adobe-helvetica'
+      Font.Pitch = fpVariable
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 10
+      OnPageChanging = DetailsPageControlPageChanging
+      object TelefoneTabSheet: TTabSheet
+        BorderWidth = 5
+        Caption = '  T&elefones  '
+        Font.Color = clBlack
+        Font.Height = 15
+        Font.Name = 'adobe-helvetica'
+        Font.Pitch = fpVariable
+        Font.Style = []
+        ParentFont = False
+        object TelefoneDBGrid: TDBGrid
+          Left = 2
+          Top = 0
+          Width = 495
+          Height = 121
+          DataSource = PessoaDM.FoneDSource
+          Font.Color = clBlack
+          Font.Height = 13
+          Font.Name = 'adobe-helvetica'
+          Font.Pitch = fpVariable
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          TitleFont.Color = clBlack
+          TitleFont.Height = 13
+          TitleFont.Name = 'adobe-helvetica'
+          TitleFont.Pitch = fpVariable
+          TitleFont.Style = []
+          OnKeyDown = DBGridDetailConfirmDelete
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'ddd'
+              Title.Caption = 'C'#243'digo DDD'
+              Width = 140
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'numero'
+              Title.Caption = 'N'#250'mero'
+              Width = 211
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'tipo'
+              PickList.Strings = (
+                'Residencial'
+                'Comercial'
+                'Celular'
+                'Fax'
+                'Outro')
+              Title.Caption = 'Tipo'
+              Width = 126
+              Visible = True
+            end>
+        end
+      end
+      object EnderecoTabSheet: TTabSheet
+        Tag = 1
+        Caption = '  Endere'#231'os  '
+        ImageIndex = 1
+        object EnderecoDBGrid: TDBGrid
+          Left = 0
+          Top = 0
+          Width = 497
+          Height = 121
+          DataSource = PessoaDM.EnderecoDSource
+          Font.Color = clBlack
+          Font.Height = 13
+          Font.Name = 'adobe-helvetica'
+          Font.Pitch = fpVariable
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          TitleFont.Color = clBlack
+          TitleFont.Height = 13
+          TitleFont.Name = 'adobe-helvetica'
+          TitleFont.Pitch = fpVariable
+          TitleFont.Style = []
+          OnKeyDown = DBGridDetailConfirmDelete
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'endereco_logradouro'
+              Title.Caption = 'Logradouro (Rua / Avenida)'
+              Width = 250
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'endereco_numero'
+              Title.Caption = 'N'#250'mero'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'endereco_apartamento'
+              Title.Caption = 'Apto.'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'endereco_bairro'
+              Title.Caption = 'Bairro'
+              Width = 100
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'endereco_complemento'
+              Title.Caption = 'Complemento'
+              Width = 150
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'endereco_cep'
+              Title.Caption = 'CEP'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'endereco_referencia'
+              Title.Caption = 'Refer'#234'ncia'
+              Visible = True
+            end>
+        end
+      end
+      object EMailTabSheet: TTabSheet
+        Tag = 2
+        Caption = '  E-Mail  '
+        ImageIndex = 2
+        object EMailDBGrid: TDBGrid
+          Left = 0
+          Top = 0
+          Width = 497
+          Height = 121
+          DataSource = PessoaDM.EMailDSource
+          Font.Color = clBlack
+          Font.Height = 13
+          Font.Name = 'adobe-helvetica'
+          Font.Pitch = fpVariable
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          TitleFont.Color = clBlack
+          TitleFont.Height = 13
+          TitleFont.Name = 'adobe-helvetica'
+          TitleFont.Pitch = fpVariable
+          TitleFont.Style = []
+          OnKeyDown = DBGridDetailConfirmDelete
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'email'
+              Title.Caption = 'Endere'#231'o e-mail'
+              Width = 270
+              Visible = True
+            end
+            item
+              DropDownRows = 3
+              Expanded = False
+              FieldName = 'tipo'
+              PickList.Strings = (
+                'Pessoal'
+                'Comercial'
+                'Outro')
+              Title.Caption = 'Tipo'
+              Width = 113
+              Visible = True
+            end
+            item
+              DropDownRows = 3
+              Expanded = False
+              FieldName = 'favorito'
+              PickList.Strings = (
+                'Sim'
+                'Nao')
+              Title.Caption = 'Favorito'
+              Width = 96
+              Visible = True
+            end>
+        end
+      end
+      object ContatoTabSheet: TTabSheet
+        Tag = 3
+        Caption = '  Contatos/Parentescos  '
+        ImageIndex = 3
+        object ContatoDBGrid: TDBGrid
+          Left = 0
+          Top = 0
+          Width = 497
+          Height = 121
+          DataSource = PessoaDM.ContatoParentescoDSource
+          Font.Color = clBlack
+          Font.Height = 13
+          Font.Name = 'adobe-helvetica'
+          Font.Pitch = fpVariable
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          TitleFont.Color = clBlack
+          TitleFont.Height = 13
+          TitleFont.Name = 'adobe-helvetica'
+          TitleFont.Pitch = fpVariable
+          TitleFont.Style = []
+          OnKeyDown = DBGridDetailConfirmDelete
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'contato_parente_nome'
+              Width = 332
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'tipo'
+              PickList.Strings = (
+                'Patr'#227'o'
+                'Funcion'#225'rio'
+                'Vendedor'
+                'Cliente'
+                'Pai/M'#227'e'
+                'Filho/Filha'
+                'Irm'#227'o/Irm'#227
+                'Av'#245'/Av'#243
+                'Bisav'#244'/Bisav'#243
+                'Tio/Tia'
+                'Sobrinho/Sobrinha'
+                'Namorado/Namorada'
+                'Noivo/Noiva'
+                'Conjugue'
+                'Outro')
+              Width = 148
+              Visible = True
+            end>
+        end
+      end
+    end
+    object ClienteGroupBox: TGroupBox
+      Left = 0
+      Top = 80
+      Width = 505
+      Height = 41
+      Caption = '  Cliente  '
+      TabOrder = 8
+      object ClienteDBCheckBox: TDBCheckBox
+        Left = 8
+        Top = 16
+        Width = 105
+        Height = 17
+        Caption = 'Cliente Comum'
+        DataField = 'tipo_cliente'
+        DataSource = PessoaDM.PessoaInstituicaoDSource
+        Font.Color = clBlack
+        Font.Height = 13
+        Font.Name = 'adobe-helvetica'
+        Font.Pitch = fpVariable
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        ValueChecked = 'Sim'
+        ValueUnchecked = 'N'#227'o'
+      end
+      object ClienteVipDBCheckBox: TDBCheckBox
+        Left = 192
+        Top = 14
+        Width = 97
+        Height = 19
+        Caption = 'Cliente VIP'
+        DataField = 'tipo_cliente_vip'
+        DataSource = PessoaDM.PessoaInstituicaoDSource
+        Font.Color = clBlack
+        Font.Height = 13
+        Font.Name = 'adobe-helvetica'
+        Font.Pitch = fpVariable
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 1
+        ValueChecked = 'Sim'
+        ValueUnchecked = 'N'#227'o'
+      end
+      object ClientePendenteDBCheckBox: TDBCheckBox
+        Left = 344
+        Top = 14
+        Width = 121
+        Height = 19
+        Caption = 'Cliente Pendente'
+        DataField = 'tipo_cliente_pendente'
+        DataSource = PessoaDM.PessoaInstituicaoDSource
+        Font.Color = clBlack
+        Font.Height = 13
+        Font.Name = 'adobe-helvetica'
+        Font.Pitch = fpVariable
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 2
+        ValueChecked = 'Sim'
+        ValueUnchecked = 'N'#227'o'
+      end
+    end
+    object ColaboradorGroupBox: TGroupBox
+      Left = 0
+      Top = 128
+      Width = 505
+      Height = 41
+      Caption = '  Colaborador  '
+      TabOrder = 9
+      object FuncionarioDBCheckBox: TDBCheckBox
+        Left = 8
+        Top = 16
+        Width = 121
+        Height = 19
+        Caption = 'Funcion'#225'rio'
+        DataField = 'tipo_funcionario'
+        DataSource = PessoaDM.PessoaInstituicaoDSource
+        Font.Color = clBlack
+        Font.Height = 13
+        Font.Name = 'adobe-helvetica'
+        Font.Pitch = fpVariable
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        ValueChecked = 'Sim'
+        ValueUnchecked = 'N'#227'o'
+      end
+      object FornecedorDBCheckBox: TDBCheckBox
+        Left = 192
+        Top = 14
+        Width = 121
+        Height = 19
+        Caption = 'Fornecedor'
+        DataField = 'tipo_fornecedor'
+        DataSource = PessoaDM.PessoaInstituicaoDSource
+        Font.Color = clBlack
+        Font.Height = 13
+        Font.Name = 'adobe-helvetica'
+        Font.Pitch = fpVariable
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 1
+        ValueChecked = 'Sim'
+        ValueUnchecked = 'N'#227'o'
+      end
+    end
+  end
+  inherited PrintMenu: TPopupMenu
+    object AgendaDeTelefones1: TMenuItem
+      Action = AgendaTelefones
+    end
+  end
+  inherited PrintActionList: TActionList
+    object AgendaTelefones: TAction
+      Caption = 'Agenda De Telefones'
+      OnExecute = AgendaTelefonesExecute
+    end
+  end
+end

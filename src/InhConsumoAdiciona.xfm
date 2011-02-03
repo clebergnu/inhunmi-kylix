@@ -1,0 +1,102 @@
+object InhConsumoAdicionaForm: TInhConsumoAdicionaForm
+  Left = 412
+  Top = 430
+  ActiveControl = ProdutoEdit
+  AutoScroll = False
+  BorderIcons = []
+  BorderStyle = fbsDialog
+  Caption = 'Inhunmi - Adiciona Consumo'
+  ClientHeight = 71
+  ClientWidth = 444
+  Color = clBackground
+  Constraints.MaxHeight = 71
+  Constraints.MaxWidth = 444
+  Constraints.MinHeight = 71
+  Constraints.MinWidth = 444
+  FormStyle = fsStayOnTop
+  KeyPreview = True
+  Position = poDefault
+  Scaled = False
+  OnClose = FormClose
+  OnKeyDown = FormKeyDown
+  PixelsPerInch = 75
+  object AdicionarButton: TButton
+    Left = 8
+    Top = 40
+    Width = 433
+    Height = 25
+    Caption = 'Adicionar Consumo'
+    Font.Color = clBlack
+    Font.Height = 10
+    Font.Name = 'helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+    OnClick = AdicionarButtonClick
+  end
+  object ProdutoButton: TButton
+    Left = 8
+    Top = 5
+    Width = 65
+    Height = 27
+    Caption = '&Produto:'
+    TabOrder = 1
+    OnClick = ProdutoButtonClick
+  end
+  object Label1: TLabel
+    Left = 168
+    Top = 11
+    Width = 68
+    Height = 15
+    Caption = 'Quantidade:'
+  end
+  object ProdutoEdit: TEdit
+    Left = 80
+    Top = 4
+    Width = 81
+    Height = 28
+    Font.Color = clBlack
+    Font.Height = 17
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    MaxLength = 8
+    ParentFont = False
+    TabOrder = 3
+    OnExit = ProdutoEditExit
+    OnKeyPress = ProdutoEditKeyPress
+  end
+  object QuantidadeEdit: TEdit
+    Left = 243
+    Top = 4
+    Width = 94
+    Height = 28
+    Font.Color = clBlack
+    Font.Height = 17
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 4
+    OnExit = QuantidadeEditExit
+    OnKeyPress = QuantidadeEditKeyPress
+  end
+  object ValorEdit: TEdit
+    Left = 344
+    Top = 4
+    Width = 94
+    Height = 28
+    TabStop = False
+    AutoSelect = False
+    Color = clNormalBackground
+    Font.Color = clBlack
+    Font.Height = 17
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 5
+  end
+end

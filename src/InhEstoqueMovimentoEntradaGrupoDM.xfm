@@ -1,0 +1,327 @@
+object EstoqueMovimentoEntradaGrupoDM: TEstoqueMovimentoEntradaGrupoDM
+  OldCreateOrder = False
+  Left = 595
+  Top = 167
+  Height = 533
+  Width = 356
+  object MovimentoGrupoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT id, departamento_destino, datahora, observacao, usuario, ' +
+      'fornecedor FROM estoque_movimento_produto_grupo WHERE (departame' +
+      'nto_destino IS NOT NULL) AND (departamento_origem IS NULL)'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    AfterPost = MovimentoGrupoDSetAfterPost
+    BeforeDelete = MovimentoGrupoDSetBeforeDelete
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 16
+    object MovimentoGrupoDSetid: TIntegerField
+      AutoGenerateValue = arDefault
+      DefaultExpression = '0'
+      FieldName = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      Required = True
+    end
+    object MovimentoGrupoDSetdepartamento_destino: TIntegerField
+      FieldName = 'departamento_destino'
+      ProviderFlags = [pfInUpdate]
+    end
+    object MovimentoGrupoDSetdatahora: TSQLTimeStampField
+      FieldName = 'datahora'
+      ProviderFlags = [pfInUpdate]
+      EditMask = '##/##/#### ##:##:##'
+    end
+    object MovimentoGrupoDSetobservacao: TStringField
+      FieldName = 'observacao'
+      ProviderFlags = [pfInUpdate]
+      FixedChar = True
+      Size = 40
+    end
+    object MovimentoGrupoDSetusuario: TIntegerField
+      FieldName = 'usuario'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object MovimentoGrupoDSetusuario_nome: TStringField
+      Alignment = taRightJustify
+      FieldKind = fkLookup
+      FieldName = 'usuario_nome'
+      LookupDataSet = UsuarioDSet
+      LookupKeyFields = 'id'
+      LookupResultField = 'usuario'
+      KeyFields = 'usuario'
+      ReadOnly = True
+      Size = 16
+      Lookup = True
+    end
+    object MovimentoGrupoDSetfornecedor: TIntegerField
+      FieldName = 'fornecedor'
+    end
+    object MovimentoGrupoDSetfornecedor_nome: TStringField
+      FieldKind = fkLookup
+      FieldName = 'fornecedor_nome'
+      LookupDataSet = FornecedorDSet
+      LookupKeyFields = 'id'
+      LookupResultField = 'nome'
+      KeyFields = 'fornecedor'
+      Size = 80
+      Lookup = True
+    end
+  end
+  object MovimentoGrupoDSource: TDataSource
+    DataSet = MovimentoGrupoDSet
+    Left = 240
+    Top = 16
+  end
+  object DepartamentosDSet: TSQLClientDataSet
+    CommandText = 'SELECT id, nome FROM departamento ORDER BY nome'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 264
+  end
+  object DepartamentosDSource: TDataSource
+    AutoEdit = False
+    DataSet = DepartamentosDSet
+    Left = 240
+    Top = 264
+  end
+  object UsuarioDSet: TSQLClientDataSet
+    CommandText = 'SELECT id, usuario FROM acesso'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 328
+  end
+  object UsuarioDSource: TDataSource
+    AutoEdit = False
+    DataSet = UsuarioDSet
+    Left = 240
+    Top = 328
+  end
+  object ProdutosDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT id, CONCAT(descricao, '#39' ('#39', unidade, '#39')'#39') as descricao FR' +
+      'OM produto ORDER BY descricao'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 400
+    object ProdutosDSetid: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'id'
+      Required = True
+    end
+    object ProdutosDSetdescricao: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'descricao'
+      Required = True
+      FixedChar = True
+      Size = 40
+    end
+  end
+  object ProdutosDSource: TDataSource
+    AutoEdit = False
+    DataSet = ProdutosDSet
+    Left = 240
+    Top = 400
+  end
+  object FornecedorDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT id, nome FROM pessoa_instituicao WHERE tipo_fornecedor = ' +
+      #39'Sim'#39
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 464
+    object FornecedorDSetid: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'id'
+      Required = True
+    end
+    object FornecedorDSetnome: TStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'nome'
+      Required = True
+      FixedChar = True
+      Size = 80
+    end
+  end
+  object FornecedorDSource: TDataSource
+    AutoEdit = False
+    DataSet = FornecedorDSet
+    Left = 240
+    Top = 464
+  end
+  object MovimentosProvider: TDataSetProvider
+    DataSet = MovimentosSQLDSet
+    Constraints = True
+    UpdateMode = upWhereKeyOnly
+    Left = 72
+    Top = 96
+  end
+  object MovimentosSQLDSet: TSQLDataSet
+    OnCalcFields = MovimentosSQLDSetCalcFields
+    SQLConnection = MainDM.MainConnection
+    CommandText = 
+      'SELECT id, grupo, produto, departamento_destino, quantidade, dat' +
+      'ahora, observacao, usuario, fornecedor, valor FROM estoque_movim' +
+      'ento_produto WHERE grupo = :p_grupo'
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'p_grupo'
+        ParamType = ptInput
+      end>
+    Left = 240
+    Top = 96
+    object MovimentosSQLDSetid: TIntegerField
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object MovimentosSQLDSetgrupo: TIntegerField
+      FieldName = 'grupo'
+    end
+    object MovimentosSQLDSetproduto: TIntegerField
+      FieldName = 'produto'
+      Required = True
+    end
+    object MovimentosSQLDSetdepartamento_destino: TIntegerField
+      FieldName = 'departamento_destino'
+    end
+    object MovimentosSQLDSetquantidade: TIntegerField
+      FieldName = 'quantidade'
+      Required = True
+    end
+    object MovimentosSQLDSetdatahora: TSQLTimeStampField
+      FieldName = 'datahora'
+    end
+    object MovimentosSQLDSetobservacao: TStringField
+      FieldName = 'observacao'
+      FixedChar = True
+      Size = 40
+    end
+    object MovimentosSQLDSetusuario: TIntegerField
+      FieldName = 'usuario'
+      Required = True
+    end
+    object MovimentosSQLDSetfornecedor: TIntegerField
+      FieldName = 'fornecedor'
+    end
+    object MovimentosSQLDSetvalor: TFloatField
+      FieldName = 'valor'
+      currency = True
+    end
+    object MovimentosSQLDSetvalor_unitario: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'valor_unitario'
+      Calculated = True
+    end
+  end
+  object MovimentosClientDSet: TClientDataSet
+    Aggregates = <>
+    AggregatesActive = True
+    Params = <>
+    ProviderName = 'MovimentosProvider'
+    BeforePost = MovimentosClientDSetBeforePost
+    AfterPost = MovimentosClientDSetAfterPost
+    OnCalcFields = MovimentosClientDSetCalcFields
+    Left = 72
+    Top = 168
+    object MovimentosClientDSetid: TIntegerField
+      AutoGenerateValue = arDefault
+      DefaultExpression = '0'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object MovimentosClientDSetgrupo: TIntegerField
+      FieldName = 'grupo'
+    end
+    object MovimentosClientDSetproduto: TIntegerField
+      FieldName = 'produto'
+      Required = True
+    end
+    object MovimentosClientDSetdepartamento_destino: TIntegerField
+      FieldName = 'departamento_destino'
+    end
+    object MovimentosClientDSetquantidade: TIntegerField
+      DisplayLabel = 'Quantidade'
+      DisplayWidth = 8
+      FieldName = 'quantidade'
+      Required = True
+    end
+    object MovimentosClientDSetdatahora: TSQLTimeStampField
+      FieldName = 'datahora'
+    end
+    object MovimentosClientDSetobservacao: TStringField
+      DisplayLabel = 'Observa'#231#227'o'
+      FieldName = 'observacao'
+      FixedChar = True
+      Size = 40
+    end
+    object MovimentosClientDSetusuario: TIntegerField
+      FieldName = 'usuario'
+      Required = True
+    end
+    object MovimentosClientDSetfornecedor: TIntegerField
+      FieldName = 'fornecedor'
+    end
+    object MovimentosClientDSetvalor: TFloatField
+      DisplayLabel = 'Valor'
+      FieldName = 'valor'
+      currency = True
+    end
+    object MovimentosClientDSetvalor_unitario: TFloatField
+      DisplayLabel = 'Valor Unit.'
+      FieldKind = fkCalculated
+      FieldName = 'valor_unitario'
+      ReadOnly = True
+      currency = True
+      Calculated = True
+    end
+    object MovimentosClientDSetproduto_descricao: TStringField
+      DisplayLabel = 'Produto'
+      FieldKind = fkLookup
+      FieldName = 'produto_descricao'
+      LookupDataSet = ProdutosDSet
+      LookupKeyFields = 'id'
+      LookupResultField = 'descricao'
+      KeyFields = 'produto'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 80
+      Lookup = True
+    end
+    object MovimentosClientDSetvalor_total: TAggregateField
+      Alignment = taCenter
+      FieldName = 'valor_total'
+      ProviderFlags = []
+      ReadOnly = True
+      Active = True
+      currency = True
+      Expression = 'SUM(valor)'
+    end
+  end
+  object MovimentosDSource: TDataSource
+    DataSet = MovimentosClientDSet
+    Left = 240
+    Top = 168
+  end
+end

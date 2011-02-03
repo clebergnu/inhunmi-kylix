@@ -1,0 +1,156 @@
+inherited InhAcessoForm: TInhAcessoForm
+  Left = 356
+  Top = 157
+  ActiveControl = UsuarioDbEdit
+  Caption = 'Inhunmi - Acesso'
+  OnActivate = FormActivate
+  PixelsPerInch = 75
+  inherited Navigator: TDBNavigator
+    DataSource = AcessoDM.AcessoDSource
+  end
+  object UsuarioLabel: TLabel
+    Left = 120
+    Top = 13
+    Width = 45
+    Height = 15
+    Caption = 'Usu'#225'rio:'
+  end
+  object UsuarioDbEdit: TDBEdit
+    Left = 176
+    Top = 8
+    Width = 121
+    Height = 23
+    DataField = 'usuario'
+    DataSource = AcessoDM.AcessoDSource
+    MaxLength = 13
+    TabOrder = 3
+  end
+  object GroupBox1: TGroupBox
+    Left = 120
+    Top = 48
+    Width = 489
+    Height = 209
+    Caption = '  &Permiss'#245'es de Acesso  '
+    TabOrder = 4
+    object TabelaPessoaDbCheckBox: TDBCheckBox
+      Left = 8
+      Top = 24
+      Width = 225
+      Height = 25
+      Caption = 'Tabela de Pessoas'
+      DataField = 'tabela_pessoa'
+      DataSource = AcessoDM.AcessoDSource
+      TabOrder = 0
+      ValueChecked = 'Sim'
+      ValueUnchecked = 'Nao'
+    end
+    object CaixaAtendimentoDbCheckBox: TDBCheckBox
+      Left = 256
+      Top = 24
+      Width = 225
+      Height = 25
+      Caption = 'Caixa e Atendimento'
+      DataField = 'caixa_atendimento'
+      DataSource = AcessoDM.AcessoDSource
+      TabOrder = 1
+      ValueChecked = 'Sim'
+      ValueUnchecked = 'Nao'
+    end
+    object TabelaInstituicaoDbCheckBox: TDBCheckBox
+      Left = 8
+      Top = 48
+      Width = 225
+      Height = 25
+      Caption = 'Tabela de Institui'#231#245'es'
+      DataField = 'tabela_instituicao'
+      DataSource = AcessoDM.AcessoDSource
+      TabOrder = 2
+      ValueChecked = 'Sim'
+      ValueUnchecked = 'Nao'
+    end
+    object TabelaDepartamentoDbCheckBox: TDBCheckBox
+      Left = 8
+      Top = 72
+      Width = 225
+      Height = 25
+      Caption = 'Tabela de Departamentos'
+      DataField = 'tabela_departamento'
+      DataSource = AcessoDM.AcessoDSource
+      TabOrder = 3
+      ValueChecked = 'Sim'
+      ValueUnchecked = 'Nao'
+    end
+    object TabelaProdutoDbCheckBox: TDBCheckBox
+      Left = 8
+      Top = 96
+      Width = 225
+      Height = 25
+      Caption = 'Tabela de Produtos'
+      DataField = 'tabela_produto'
+      DataSource = AcessoDM.AcessoDSource
+      TabOrder = 4
+      ValueChecked = 'Sim'
+      ValueUnchecked = 'Nao'
+    end
+    object TabelaFormaPagamentoDbCheckBox: TDBCheckBox
+      Left = 8
+      Top = 120
+      Width = 225
+      Height = 25
+      Caption = 'Tabela de Formas de Pagamento'
+      DataField = 'tabela_forma_pagamento'
+      DataSource = AcessoDM.AcessoDSource
+      TabOrder = 5
+      ValueChecked = 'Sim'
+      ValueUnchecked = 'Nao'
+    end
+    object TabelaEncomendaDbCheckBox: TDBCheckBox
+      Left = 8
+      Top = 144
+      Width = 225
+      Height = 25
+      Caption = 'Tabela de Encomendas'
+      DataField = 'tabela_encomenda'
+      DataSource = AcessoDM.AcessoDSource
+      TabOrder = 6
+      ValueChecked = 'Sim'
+      ValueUnchecked = 'Nao'
+    end
+    object TabelaConsumoDbCheckBox: TDBCheckBox
+      Left = 8
+      Top = 168
+      Width = 225
+      Height = 25
+      Caption = 'Tabela de Consumos'
+      DataField = 'tabela_consumo'
+      DataSource = AcessoDM.AcessoDSource
+      TabOrder = 7
+      ValueChecked = 'Sim'
+      ValueUnchecked = 'Nao'
+    end
+    object AcessoDbCheckBox: TDBCheckBox
+      Left = 256
+      Top = 48
+      Width = 225
+      Height = 25
+      Caption = 'Controle de Acesso'
+      DataField = 'acesso'
+      DataSource = AcessoDM.AcessoDSource
+      TabOrder = 8
+      ValueChecked = 'Sim'
+      ValueUnchecked = 'Nao'
+    end
+    object ConfiguracaoDbCheckBox: TDBCheckBox
+      Left = 254
+      Top = 72
+      Width = 225
+      Height = 25
+      Caption = 'Configura'#231#245'es'
+      DataField = 'configuracao'
+      DataSource = AcessoDM.AcessoDSource
+      TabOrder = 9
+      ValueChecked = 'Sim'
+      ValueUnchecked = 'Nao'
+    end
+  end
+end

@@ -1,0 +1,48 @@
+object ConsumoAdicionaDM: TConsumoAdicionaDM
+  OldCreateOrder = False
+  Left = 629
+  Top = 524
+  Height = 163
+  Width = 229
+  object ProdutoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT descricao, preco_venda, id FROM produto WHERE tipo_vendid' +
+      'o = '#39'Sim'#39
+    Aggregates = <>
+    IndexFieldNames = 'id'
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 32
+    Top = 16
+    object ProdutoDSetdescricao: TStringField
+      DisplayLabel = 'Produto'
+      FieldName = 'descricao'
+      Required = True
+      FixedChar = True
+      Size = 40
+    end
+    object ProdutoDSetpreco_venda: TFloatField
+      DisplayLabel = 'Pre'#231'o de Venda'
+      FieldName = 'preco_venda'
+      DisplayFormat = 'R$ #######0.00'
+    end
+    object ProdutoDSetid: TIntegerField
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+  end
+  object ProdutoDSource: TDataSource
+    DataSet = ProdutoDSet
+    Left = 144
+    Top = 16
+  end
+  object ConsumoAdicionaDSet: TSQLDataSet
+    SQLConnection = MainDM.MainConnection
+    Params = <>
+    Left = 64
+    Top = 88
+  end
+end

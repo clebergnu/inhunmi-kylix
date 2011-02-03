@@ -1,0 +1,21 @@
+[Impressao]
+;Impressora a ser usada por padrão
+ImpressoraPadrao=caixa01
+
+;Esta seção descreve a ação padrão segundo a classe do relatorio. Formato:
+;ClasseDeRelatorio=Destino
+;Valores Especiais:
+;ImpressoraPadrao -> Utiliza valor da seção [Impressao], chave 'ImpressoraPadrao'.
+
+[Relatorios]
+;CaixaContraVale=ImpressoraPadrao
+;CaixaComprovanteMovimento=ImpressoraPadrao
+;CaixaComprovanteFechamento=ImpressoraPadrao
+;CaixaComprovantePendente=ImpressoraPadrao
+
+[Atendimento]
+DepartamentoVenda=5
+
+[Acesso]
+Usuario=usuario
+Senha=senha

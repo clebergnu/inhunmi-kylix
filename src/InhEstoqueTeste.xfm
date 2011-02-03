@@ -1,0 +1,113 @@
+object InhEstoqueTesteForm: TInhEstoqueTesteForm
+  Left = 255
+  Top = 205
+  Width = 587
+  Height = 446
+  HorzScrollBar.Range = 577
+  VertScrollBar.Range = 441
+  ActiveControl = ProdutoDeptoDbGrid
+  Caption = 'InhEstoqueTesteForm'
+  Color = clBackground
+  PixelsPerInch = 75
+  TextHeight = 15
+  TextWidth = 7
+  object ProdutoDeptoDbGrid: TDBGrid
+    Left = 8
+    Top = 40
+    Width = 569
+    Height = 137
+    DataSource = ProdutoDeptoDSource
+    TabOrder = 0
+    TitleFont.Color = clBlack
+    TitleFont.Height = 13
+    TitleFont.Name = 'Helvetica'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Style = []
+  end
+  object ProdutoIDEdit: TEdit
+    Left = 8
+    Top = 8
+    Width = 65
+    Height = 23
+    TabOrder = 1
+    Text = '0'
+  end
+  object Button6: TButton
+    Left = 80
+    Top = 8
+    Width = 169
+    Height = 25
+    Caption = 'Produto x Departamento'
+    TabOrder = 2
+    OnClick = Button6Click
+  end
+  object Button1: TButton
+    Left = 360
+    Top = 416
+    Width = 75
+    Height = 25
+    Caption = 'Historico'
+    TabOrder = 3
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 8
+    Top = 179
+    Width = 105
+    Height = 25
+    Caption = 'Ajustes'
+    TabOrder = 4
+    OnClick = Button2Click
+  end
+  object Button7: TButton
+    Left = 200
+    Top = 416
+    Width = 75
+    Height = 25
+    Caption = 'Entrada'
+    TabOrder = 5
+  end
+  object Button8: TButton
+    Left = 280
+    Top = 416
+    Width = 75
+    Height = 25
+    Caption = 'Saida'
+    TabOrder = 6
+  end
+  object AjusteDbGrid: TDBGrid
+    Left = 8
+    Top = 208
+    Width = 569
+    Height = 129
+    DataSource = AjusteDSource
+    TabOrder = 7
+    TitleFont.Color = clBlack
+    TitleFont.Height = 13
+    TitleFont.Name = 'Helvetica'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Style = []
+  end
+  object ProdutoDeptoDSource: TDataSource
+    DataSet = ProdutoDeptoDSet
+    Left = 288
+    Top = 8
+  end
+  object ProdutoDeptoDSet: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 256
+    Top = 8
+  end
+  object AjusteDSet: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 352
+    Top = 8
+  end
+  object AjusteDSource: TDataSource
+    DataSet = AjusteDSet
+    Left = 384
+    Top = 8
+  end
+end

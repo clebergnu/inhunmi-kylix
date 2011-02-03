@@ -1,0 +1,103 @@
+object InhCaixaMovimentoDlgForm: TInhCaixaMovimentoDlgForm
+  Left = 497
+  Top = 293
+  Width = 366
+  Height = 160
+  HorzScrollBar.Range = 361
+  VertScrollBar.Range = 95
+  ActiveControl = TipoComboBox
+  Caption = 'Inhunmi - Movimento de Caixa'
+  Color = clBackground
+  Constraints.MaxHeight = 160
+  Constraints.MaxWidth = 366
+  Constraints.MinHeight = 160
+  Constraints.MinWidth = 366
+  OnClose = FormClose
+  OnCreate = FormCreate
+  PixelsPerInch = 75
+  TextHeight = 15
+  TextWidth = 7
+  object TipoLabel: TLabel
+    Left = 56
+    Top = 12
+    Width = 27
+    Height = 15
+    Caption = '&Tipo:'
+  end
+  object TipoComboBox: TComboBox
+    Left = 88
+    Top = 8
+    Width = 113
+    Height = 23
+    Style = csDropDownList
+    ItemHeight = 17
+    Items.Strings = (
+      'Cr'#233'dito'
+      'D'#233'bito')
+    ItemIndex = 0
+    TabOrder = 0
+    Text = 'Cr'#233'dito'
+  end
+  object LabelDescricao: TLabel
+    Left = 23
+    Top = 76
+    Width = 60
+    Height = 15
+    Caption = 'Descri'#231#227'o:'
+  end
+  object FormaPagamentoDbLookupComboBox: TDBLookupComboBox
+    Left = 88
+    Top = 40
+    Width = 273
+    Height = 25
+    KeyField = 'id'
+    ListField = 'descricao'
+    ListSource = FormaPagamentoDSource
+    TabOrder = 2
+  end
+  object DescricaoEdit: TEdit
+    Left = 88
+    Top = 72
+    Width = 273
+    Height = 23
+    MaxLength = 40
+    TabOrder = 3
+  end
+  object ValorLabel: TLabel
+    Left = 224
+    Top = 12
+    Width = 33
+    Height = 15
+    Caption = '&Valor:'
+  end
+  object ValorEdit: TEdit
+    Left = 264
+    Top = 8
+    Width = 97
+    Height = 23
+    MaxLength = 10
+    TabOrder = 1
+  end
+  object Label1: TLabel
+    Left = 9
+    Top = 45
+    Width = 76
+    Height = 15
+    Caption = 'F.Pagamento:'
+  end
+  object FormaPagamentoDSet: TSQLClientDataSet
+    CommandText = 'SELECT id, descricao FROM forma_pagamento'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 8
+    Top = 120
+  end
+  object FormaPagamentoDSource: TDataSource
+    DataSet = FormaPagamentoDSet
+    Left = 48
+    Top = 120
+  end
+end

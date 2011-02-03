@@ -1,0 +1,272 @@
+object EncomendaDM: TEncomendaDM
+  OldCreateOrder = False
+  Left = 655
+  Top = 194
+  Height = 404
+  Width = 319
+  object EncomendaDSet: TSQLClientDataSet
+    CommandText = 'SELECT * FROM encomenda WHERE dono = :porta_consumo_id'
+    Aggregates = <>
+    AutoCalcFields = False
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'porta_consumo_id'
+        ParamType = ptInput
+      end>
+    BeforePost = EncomendaDSetBeforePost
+    AfterPost = EncomendaDSetAfterPost
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 88
+    object EncomendaDSetdono: TIntegerField
+      FieldName = 'dono'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object EncomendaDSettipo_entrega: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'tipo_entrega'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object EncomendaDSetlocal_entrega: TStringField
+      DisplayWidth = 200
+      FieldName = 'local_entrega'
+      Size = 80
+    end
+    object EncomendaDSettaxa_entrega: TFloatField
+      DefaultExpression = '0.00'
+      FieldName = 'taxa_entrega'
+      DisplayFormat = '#######0.00'
+    end
+    object EncomendaDSetobservacoes: TStringField
+      DisplayWidth = 255
+      FieldName = 'observacoes'
+      Size = 200
+    end
+    object EncomendaDSetdatahora_entrega: TSQLTimeStampField
+      FieldName = 'datahora_entrega'
+      EditMask = '##/##/#### ##:##:##'
+    end
+    object EncomendaDSetusuario: TIntegerField
+      FieldName = 'usuario'
+      Required = True
+    end
+  end
+  object EncomendaDSource: TDataSource
+    DataSet = EncomendaDSet
+    Left = 224
+    Top = 88
+  end
+  object ConsumoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT id, dono, produto, produto_quantidade, valor, usuario, de' +
+      'partamento_venda, datahora_inicial FROM consumo WHERE dono = :po' +
+      'rta_consumo_id ORDER BY id'
+    Aggregates = <>
+    AggregatesActive = True
+    IndexFieldNames = 'id'
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'porta_consumo_id'
+        ParamType = ptInput
+      end>
+    BeforePost = DetailBeforePost
+    AfterPost = DetailAfterPost
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 136
+    object ConsumoDSetid: TIntegerField
+      ConstraintErrorMessage = 'Campo "c'#243'digo" precisa de um valor!'
+      DefaultExpression = '0'
+      FieldName = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      Required = True
+    end
+    object ConsumoDSetdono: TIntegerField
+      ConstraintErrorMessage = 'Campo "dono" precisa de um valor!'
+      FieldName = 'dono'
+      Required = True
+    end
+    object ConsumoDSetproduto: TIntegerField
+      ConstraintErrorMessage = 'Campo "produto" precisa de um valor!'
+      FieldName = 'produto'
+      Required = True
+    end
+    object ConsumoDSetproduto_quantidade: TIntegerField
+      ConstraintErrorMessage = 'Campo "quantidade" precisa de um valor!'
+      DisplayLabel = 'Quantidade'
+      FieldName = 'produto_quantidade'
+      Required = True
+    end
+    object ConsumoDSetvalor: TFloatField
+      DisplayLabel = 'Valor'
+      FieldName = 'valor'
+      Required = True
+      DisplayFormat = 'R$ ########.00'
+    end
+    object ConsumoDSetproduto_descricao: TStringField
+      DisplayLabel = 'Produto'
+      FieldKind = fkLookup
+      FieldName = 'produto_descricao'
+      LookupDataSet = ProdutoDSet
+      LookupKeyFields = 'id'
+      LookupResultField = 'descricao'
+      KeyFields = 'produto'
+      Size = 40
+      Lookup = True
+    end
+    object ConsumoDSetusuario: TIntegerField
+      FieldName = 'usuario'
+      Required = True
+    end
+    object ConsumoDSetdepartamento_venda: TIntegerField
+      FieldName = 'departamento_venda'
+    end
+    object ConsumoDSetdatahora_inicial: TSQLTimeStampField
+      FieldName = 'datahora_inicial'
+      Required = True
+    end
+    object ConsumoDSettotal: TAggregateField
+      FieldName = 'total'
+      Active = True
+      DisplayFormat = 'R$ ########.00'
+      Expression = 'SUM(valor)'
+    end
+  end
+  object ConsumoDSource: TDataSource
+    DataSet = ConsumoDSet
+    Left = 224
+    Top = 136
+  end
+  object PortaConsumoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT id, dono, tipo, status, datahora_inicial FROM porta_consu' +
+      'mo WHERE tipo = "Encomenda" ORDER by id'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    UpdateMode = upWhereKeyOnly
+    BeforePost = PortaConsumoDSetBeforePost
+    AfterPost = PortaConsumoDSetAfterPost
+    BeforeDelete = PortaConsumoDSetBeforeDelete
+    AfterDelete = PortaConsumoDSetAfterPost
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 8
+    object PortaConsumoDSetid: TIntegerField
+      DefaultExpression = '0'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object PortaConsumoDSetdono: TIntegerField
+      FieldName = 'dono'
+    end
+    object PortaConsumoDSetstatus: TStringField
+      DefaultExpression = #39'Aberto'#39
+      FieldName = 'status'
+      Required = True
+      FixedChar = True
+      Size = 14
+    end
+    object PortaConsumoDSetdono_nome: TStringField
+      FieldKind = fkLookup
+      FieldName = 'dono_nome'
+      LookupDataSet = NomeTelefoneDSet
+      LookupKeyFields = 'id'
+      LookupResultField = 'nome'
+      KeyFields = 'dono'
+      Size = 60
+      Lookup = True
+    end
+    object PortaConsumoDSettipo: TStringField
+      DefaultExpression = #39'Encomenda'#39
+      FieldName = 'tipo'
+      Required = True
+      FixedChar = True
+      Size = 9
+    end
+    object PortaConsumoDSetdatahora_inicial: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'datahora_inicial'
+      Required = True
+    end
+  end
+  object PortaConsumoDSource: TDataSource
+    DataSet = PortaConsumoDSet
+    Left = 224
+    Top = 8
+  end
+  object NomeTelefoneDSource: TDataSource
+    DataSet = NomeTelefoneDSet
+    Left = 224
+    Top = 240
+  end
+  object ProdutoDSet: TSQLClientDataSet
+    Active = True
+    CommandText = 
+      'SELECT id, descricao, preco_venda FROM produto WHERE tipo_vendid' +
+      'o = "Sim" AND tipo_generalizado = "N'#227'o" ORDER BY descricao'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 344
+  end
+  object ProdutoDSource: TDataSource
+    DataSet = ProdutoDSet
+    Left = 224
+    Top = 344
+  end
+  object EnderecoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT CONCAT_WS('#39', '#39', endereco_logradouro, endereco_numero, end' +
+      'ereco_apartamento, endereco_complemento, endereco_bairro, endere' +
+      'co_referencia) as endereco FROM pessoa_instituicao_endereco WHER' +
+      'E dono = :pessoa_instituicao_id'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'pessoa_instituicao_id'
+        ParamType = ptInput
+      end>
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 296
+  end
+  object EnderecoDSource: TDataSource
+    DataSet = EnderecoDSet
+    Left = 224
+    Top = 296
+  end
+  object NomeTelefoneDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT pessoa_instituicao_telefone.numero, pessoa_instituicao.no' +
+      'me, pessoa_instituicao.id FROM pessoa_instituicao, pessoa_instit' +
+      'uicao_telefone WHERE pessoa_instituicao.id = pessoa_instituicao_' +
+      'telefone.dono'
+    Aggregates = <>
+    IndexFieldNames = 'numero'
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    ReadOnly = True
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 240
+  end
+end

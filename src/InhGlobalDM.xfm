@@ -1,0 +1,19 @@
+object GlobalDM: TGlobalDM
+  OldCreateOrder = False
+  Left = 318
+  Top = 254
+  Height = 334
+  Width = 515
+  object ProdutoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT id, descricao, preco_venda FROM produto WHERE tipo_vendid' +
+      'o = '#39'Sim'#39
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 48
+    Top = 16
+  end
+end

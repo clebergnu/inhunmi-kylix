@@ -1,0 +1,39 @@
+package Inhunmi;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'Inhunmi''s Custom Components'}
+{$IMPLICITBUILD OFF}
+
+requires
+  baseclx,
+  visualclx,
+  dataclx;
+
+contains
+  InhDbForm in '../../../kylix2/lib/InhDbForm.pas',
+  QCheckBox1 in '../../../kylix2/lib/QCheckBox1.pas',
+  QCustomDialog1 in '../../../kylix2/lib/QCustomDialog1.pas',
+  QInhCustomForm in '../../../kylix2/lib/QInhCustomForm.pas';
+
+end.

@@ -1,0 +1,146 @@
+inherited InhGerenciaFechamentoPortaConsumosForm: TInhGerenciaFechamentoPortaConsumosForm
+  Left = 386
+  Top = 197
+  Width = 303
+  Height = 408
+  HorzScrollBar.Range = 297
+  VertScrollBar.Range = 401
+  ActiveControl = TipoPortaConsumoComboBox
+  Caption = 'Inhunmi - Gerencimamento - Fechamento de Porta Consumo'
+  Constraints.MaxHeight = 408
+  Constraints.MaxWidth = 303
+  Constraints.MinHeight = 408
+  Constraints.MinWidth = 303
+  PixelsPerInch = 75
+  TextHeight = 15
+  TextWidth = 7
+  inherited CancelarSpeedButton: TSpeedButton
+    Left = 80
+    Top = 368
+  end
+  inherited OkSpeedButton: TSpeedButton
+    Left = 192
+    Top = 368
+  end
+  inherited Bevel1: TBevel
+    Left = 7
+    Top = 320
+    Width = 290
+  end
+  object Label1: TLabel
+    Left = 9
+    Top = 10
+    Width = 27
+    Height = 15
+    Caption = '&Tipo:'
+    FocusControl = TipoPortaConsumoComboBox
+  end
+  object TipoPortaConsumoComboBox: TComboBox
+    Left = 48
+    Top = 6
+    Width = 249
+    Height = 23
+    Style = csDropDownList
+    ItemHeight = 17
+    TabOrder = 1
+    OnChange = TipoPortaConsumoComboBoxChange
+  end
+  object GroupBox1: TGroupBox
+    Left = 7
+    Top = 32
+    Width = 290
+    Height = 330
+    Caption = '  Porta-Consumos Abertos e Sem Consumos  '
+    TabOrder = 2
+    object DBGrid1: TDBGrid
+      Left = 8
+      Top = 16
+      Width = 273
+      Height = 281
+      DataSource = PortaConsumosDSource
+      Options = [dgTitles, dgColumnResize, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      TabOrder = 0
+      TitleFont.Color = clBlack
+      TitleFont.Height = 13
+      TitleFont.Name = 'Helvetica'
+      TitleFont.Pitch = fpVariable
+      TitleFont.Style = []
+    end
+    object Label3: TLabel
+      Left = 40
+      Top = 305
+      Width = 141
+      Height = 15
+      Caption = 'Quantidade de Registros:'
+    end
+    object QuantidadeDbEdit: TDBEdit
+      Left = 192
+      Top = 301
+      Width = 87
+      Height = 23
+      Color = clNormalBackground
+      DataField = 'quantidade'
+      DataSource = PortaConsumosDSource
+      TabOrder = 2
+    end
+  end
+  object PortaConsumosDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT porta_consumo.numero, porta_consumo.id, porta_consumo.tip' +
+      'o, COUNT(consumo.dono) as consumos FROM porta_consumo LEFT JOIN ' +
+      'consumo ON porta_consumo.id = consumo.dono WHERE porta_consumo.s' +
+      'tatus = 1 GROUP BY porta_consumo.id HAVING consumos = 0;'
+    Aggregates = <>
+    AggregatesActive = True
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 8
+    Top = 368
+    object PortaConsumosDSetnumero: TIntegerField
+      Alignment = taCenter
+      DisplayLabel = 'N'#250'mero'
+      FieldName = 'numero'
+      ReadOnly = True
+    end
+    object PortaConsumosDSetid: TIntegerField
+      Alignment = taCenter
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'id'
+      ReadOnly = True
+      Required = True
+    end
+    object PortaConsumosDSettipo: TStringField
+      Alignment = taCenter
+      DisplayLabel = 'Tipo'
+      DisplayWidth = 13
+      FieldName = 'tipo'
+      ReadOnly = True
+      Required = True
+      FixedChar = True
+      Size = 9
+    end
+    object PortaConsumosDSetconsumos: TFMTBCDField
+      FieldName = 'consumos'
+      ProviderFlags = []
+      ReadOnly = True
+      Required = True
+      Visible = False
+      Precision = 21
+      Size = 0
+    end
+    object PortaConsumosDSetquantidade: TAggregateField
+      Alignment = taRightJustify
+      FieldName = 'quantidade'
+      Active = True
+      Expression = 'COUNT(*)'
+    end
+  end
+  object PortaConsumosDSource: TDataSource
+    AutoEdit = False
+    DataSet = PortaConsumosDSet
+    Left = 40
+    Top = 368
+  end
+end

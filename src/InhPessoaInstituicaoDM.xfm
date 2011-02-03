@@ -1,0 +1,36 @@
+object PessoaInstituicaoDM: TPessoaInstituicaoDM
+  OldCreateOrder = False
+  Left = 222
+  Top = 272
+  Height = 79
+  Width = 275
+  object PessoaInstituicaoDSet: TSQLClientDataSet
+    CommandText = 'pessoa_instituicao'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    BeforePost = PessoaInstituicaoDSetBeforePost
+    AfterPost = PessoaInstituicaoDSetAfterPost
+    AfterDelete = PessoaInstituicaoDSetAfterDelete
+    CommandType = ctTable
+    DBConnection = MainDM.MainConnection
+    Left = 56
+    Top = 16
+    object PessoaInstituicaoDSetid: TIntegerField
+      ConstraintErrorMessage = 'Valor do campo "C'#243'digo" inv'#225'lido'
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object PessoaInstituicaoDSetnome: TStringField
+      ConstraintErrorMessage = 'Valor do campo "Nome" inv'#225'lido'
+      DisplayLabel = 'Nome'
+      FieldName = 'nome'
+      Required = True
+      FixedChar = True
+      Size = 80
+    end
+  end
+end

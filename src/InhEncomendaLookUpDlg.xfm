@@ -1,0 +1,61 @@
+inherited InhEncomendaLookUpDlgForm: TInhEncomendaLookUpDlgForm
+  Left = 269
+  Top = 412
+  HorzScrollBar.Range = 0
+  VertScrollBar.Range = 0
+  ActiveControl = EncomendaEdit
+  AutoScroll = False
+  Caption = 'Inhunmi - Localizar Encomenda'
+  ClientHeight = 91
+  ClientWidth = 448
+  Constraints.MaxHeight = 91
+  Constraints.MaxWidth = 448
+  Constraints.MinHeight = 91
+  Constraints.MinWidth = 448
+  OnShow = FormShow
+  PixelsPerInch = 75
+  TextHeight = 15
+  TextWidth = 7
+  inherited CancelarSpeedButton: TSpeedButton
+    Left = 224
+    Top = 48
+  end
+  inherited OkSpeedButton: TSpeedButton
+    Left = 336
+    Top = 48
+  end
+  inherited Bevel1: TBevel
+    Left = 6
+    Top = 32
+    Width = 433
+  end
+  object Label1: TLabel
+    Left = 8
+    Top = 12
+    Width = 124
+    Height = 15
+    Caption = 'Localizar Encomenda:'
+  end
+  object TipoComboBox: TComboBox
+    Left = 139
+    Top = 8
+    Width = 142
+    Height = 23
+    Style = csDropDownList
+    ItemHeight = 17
+    Items.Strings = (
+      'C'#243'digo'
+      'Telefone Cliente'
+      'Nome Cliente')
+    ItemIndex = 0
+    TabOrder = 1
+    Text = 'C'#243'digo'
+  end
+  object EncomendaEdit: TEdit
+    Left = 288
+    Top = 8
+    Width = 153
+    Height = 23
+    TabOrder = 2
+  end
+end

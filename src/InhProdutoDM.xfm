@@ -1,0 +1,160 @@
+object ProdutoDM: TProdutoDM
+  OldCreateOrder = False
+  Left = 517
+  Top = 270
+  Height = 211
+  Width = 362
+  object ProdutoDSet: TSQLClientDataSet
+    CommandText = 'produto'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    PacketRecords = 100
+    Params = <>
+    UpdateMode = upWhereKeyOnly
+    AfterPost = InhProdutoMasterAfterPost
+    BeforeDelete = ProdutoDSetBeforeDelete
+    AfterDelete = InhProdutoMasterAfterPost
+    CommandType = ctTable
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 8
+    object ProdutoDSetid: TIntegerField
+      AutoGenerateValue = arAutoInc
+      ConstraintErrorMessage = 'Campo Codigo Necessario'
+      DefaultExpression = '0'
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object ProdutoDSetdescricao: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'descricao'
+      Required = True
+      FixedChar = True
+      Size = 40
+    end
+    object ProdutoDSetunidade: TStringField
+      DisplayLabel = 'Unidade'
+      FieldName = 'unidade'
+      Required = True
+      FixedChar = True
+      Size = 9
+    end
+    object ProdutoDSetpreco_venda: TFloatField
+      DisplayLabel = 'Pre'#231'o De Venda'
+      DisplayWidth = 12
+      FieldName = 'preco_venda'
+      Required = True
+      EditFormat = '0.00##'
+      currency = True
+    end
+    object ProdutoDSettipo_comprado: TStringField
+      AutoGenerateValue = arDefault
+      DefaultExpression = #39'N'#227'o'#39
+      DisplayLabel = 'Tipo Comprado'
+      FieldName = 'tipo_comprado'
+      FixedChar = True
+      Size = 3
+    end
+    object ProdutoDSettipo_vendido: TStringField
+      AutoGenerateValue = arDefault
+      DefaultExpression = #39'N'#227'o'#39
+      DisplayLabel = 'Tipo Vendido'
+      FieldName = 'tipo_vendido'
+      FixedChar = True
+      Size = 3
+    end
+    object ProdutoDSettipo_generalizado: TStringField
+      AutoGenerateValue = arDefault
+      DefaultExpression = #39'N'#227'o'#39
+      DisplayLabel = 'Tipo Generalizado'
+      FieldName = 'tipo_generalizado'
+      FixedChar = True
+      Size = 3
+    end
+    object ProdutoDSettipo_produzido: TStringField
+      AutoGenerateValue = arDefault
+      DefaultExpression = #39'N'#227'o'#39
+      DisplayLabel = 'Tipo Produzido'
+      FieldName = 'tipo_produzido'
+      FixedChar = True
+      Size = 3
+    end
+    object ProdutoDSettipo_meta_grupo: TStringField
+      AutoGenerateValue = arDefault
+      DefaultExpression = #39'N'#227'o'#39
+      DisplayLabel = 'Tipo Meta-Grupo'
+      FieldName = 'tipo_meta_grupo'
+      FixedChar = True
+      Size = 3
+    end
+    object ProdutoDSetdepartamento_compra: TSmallintField
+      DisplayLabel = 'Departamento De Compra'
+      FieldName = 'departamento_compra'
+    end
+    object ProdutoDSetdepartamento_venda: TSmallintField
+      DisplayLabel = 'Departamento De Venda'
+      FieldName = 'departamento_venda'
+    end
+    object ProdutoDSetdepartamento_producao: TSmallintField
+      DisplayLabel = 'Departamento De Produ'#231#227'o'
+      FieldName = 'departamento_producao'
+    end
+    object ProdutoDSetdepartamento_estoque: TIntegerField
+      DisplayLabel = 'Departamento de Estoque'
+      FieldName = 'departamento_estoque'
+    end
+    object ProdutoDSetgrupo: TIntegerField
+      DisplayLabel = 'Grupo'
+      FieldName = 'grupo'
+      Required = True
+    end
+    object ProdutoDSetestoque_minimo: TIntegerField
+      DisplayLabel = 'Estoque Minimo'
+      DisplayWidth = 8
+      FieldName = 'estoque_minimo'
+    end
+    object ProdutoDSetquantidade_composicao: TIntegerField
+      AutoGenerateValue = arDefault
+      DefaultExpression = '1'
+      FieldName = 'quantidade_composicao'
+      Required = True
+    end
+  end
+  object ProdutoDSource: TDataSource
+    DataSet = ProdutoDSet
+    Left = 248
+    Top = 8
+  end
+  object DepartamentoDSet: TSQLClientDataSet
+    CommandText = 'SELECT id, nome FROM departamento'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 72
+  end
+  object DepartamentoDSource: TDataSource
+    DataSet = DepartamentoDSet
+    Left = 248
+    Top = 72
+  end
+  object ProdutoGrupoDSet: TSQLClientDataSet
+    CommandText = 'SELECT id, descricao FROM produto_grupo'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 136
+  end
+  object ProdutoGrupoDSource: TDataSource
+    DataSet = ProdutoGrupoDSet
+    Left = 248
+    Top = 136
+  end
+end

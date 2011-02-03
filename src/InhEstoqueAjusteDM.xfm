@@ -1,0 +1,149 @@
+object EstoqueAjusteDM: TEstoqueAjusteDM
+  OldCreateOrder = False
+  Left = 550
+  Top = 284
+  Height = 287
+  Width = 284
+  object MovimentoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT id, produto, departamento, quantidade, usuario, datahora,' +
+      ' observacao FROM estoque_ajuste_produto WHERE (grupo IS NULL)'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    AfterPost = MovimentoDSetAfterPost
+    BeforeDelete = MovimentoDSetBeforeDelete
+    DBConnection = MainDM.MainConnection
+    Left = 56
+    Top = 16
+    object MovimentoDSetid: TIntegerField
+      AutoGenerateValue = arDefault
+      DefaultExpression = '0'
+      FieldName = 'id'
+      Required = True
+    end
+    object MovimentoDSetproduto: TIntegerField
+      FieldName = 'produto'
+      Required = True
+    end
+    object MovimentoDSetquantidade: TIntegerField
+      FieldName = 'quantidade'
+      Required = True
+    end
+    object MovimentoDSetusuario: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'usuario'
+      Required = True
+    end
+    object MovimentoDSetdatahora: TSQLTimeStampField
+      FieldName = 'datahora'
+    end
+    object MovimentoDSetobservacao: TStringField
+      FieldName = 'observacao'
+      Required = True
+      FixedChar = True
+      Size = 40
+    end
+    object MovimentoDSetusuario_nome: TStringField
+      Alignment = taRightJustify
+      FieldKind = fkLookup
+      FieldName = 'usuario_nome'
+      LookupDataSet = UsuarioDSet
+      LookupKeyFields = 'id'
+      LookupResultField = 'usuario'
+      KeyFields = 'usuario'
+      Size = 16
+      Lookup = True
+    end
+    object MovimentoDSetproduto_nome: TStringField
+      FieldKind = fkLookup
+      FieldName = 'produto_nome'
+      LookupDataSet = ProdutoDSet
+      LookupKeyFields = 'id'
+      LookupResultField = 'descricao'
+      KeyFields = 'produto'
+      Size = 40
+      Lookup = True
+    end
+    object MovimentoDSetdepartamento: TIntegerField
+      FieldName = 'departamento'
+      Required = True
+    end
+  end
+  object MovimentoDSource: TDataSource
+    DataSet = MovimentoDSet
+    Left = 176
+    Top = 16
+  end
+  object ProdutoDSet: TSQLClientDataSet
+    Active = True
+    CommandText = 'SELECT id, descricao FROM produto ORDER BY descricao'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 56
+    Top = 80
+    object ProdutoDSetid: TIntegerField
+      FieldName = 'id'
+      Required = True
+    end
+    object ProdutoDSetdescricao: TStringField
+      FieldName = 'descricao'
+      Required = True
+      FixedChar = True
+      Size = 40
+    end
+  end
+  object DepartamentoDSet: TSQLClientDataSet
+    CommandText = 'SELECT id, nome FROM departamento ORDER BY nome'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 56
+    Top = 152
+    object DepartamentoDSetid: TIntegerField
+      FieldName = 'id'
+      Required = True
+    end
+    object DepartamentoDSetnome: TStringField
+      FieldName = 'nome'
+      Required = True
+      FixedChar = True
+      Size = 40
+    end
+  end
+  object ProdutoDSource: TDataSource
+    AutoEdit = False
+    DataSet = ProdutoDSet
+    Left = 176
+    Top = 80
+  end
+  object DepartamentoDSource: TDataSource
+    AutoEdit = False
+    DataSet = DepartamentoDSet
+    Left = 176
+    Top = 152
+  end
+  object UsuarioDSet: TSQLClientDataSet
+    Active = True
+    CommandText = 'SELECT id, usuario FROM acesso'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 56
+    Top = 224
+  end
+  object UsuarioDSource: TDataSource
+    AutoEdit = False
+    DataSet = UsuarioDSet
+    Left = 176
+    Top = 224
+  end
+end

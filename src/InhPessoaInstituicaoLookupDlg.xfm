@@ -1,0 +1,58 @@
+inherited InhPessoaInstituicaoLookupDlgForm: TInhPessoaInstituicaoLookupDlgForm
+  Left = 221
+  Top = 112
+  Caption = 'Inhunmi - Selecionar Pessoa / Institui'#231#227'o'
+  PixelsPerInch = 75
+  TextHeight = 15
+  TextWidth = 7
+  object Label1: TLabel
+    Left = 8
+    Top = 12
+    Width = 27
+    Height = 15
+    Caption = '&Tipo:'
+  end
+  object TipoComboBox: TComboBox
+    Left = 120
+    Top = 8
+    Width = 273
+    Height = 23
+    Style = csDropDownList
+    ItemHeight = 17
+    Items.Strings = (
+      'Pessoa'
+      'Institui'#231#227'o')
+    ItemIndex = 0
+    TabOrder = 1
+    Text = 'Pessoa'
+    OnChange = TipoComboBoxChange
+  end
+  object TextoEdit: TEdit
+    Left = 120
+    Top = 40
+    Width = 273
+    Height = 23
+    TabOrder = 2
+    OnChange = TextoEditChange
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 45
+    Width = 103
+    Height = 15
+    Caption = 'Texto de &Procura: '
+  end
+  object ResultadosDbGrid: TDBGrid
+    Left = 8
+    Top = 72
+    Width = 385
+    Height = 113
+    Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+    TabOrder = 4
+    TitleFont.Color = clBlack
+    TitleFont.Height = 13
+    TitleFont.Name = 'Helvetica'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Style = []
+  end
+end

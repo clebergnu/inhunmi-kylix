@@ -1,0 +1,129 @@
+inherited InhPortaConsumoNovoForm: TInhPortaConsumoNovoForm
+  Left = 333
+  Top = 189
+  Width = 398
+  Height = 232
+  VertScrollBar.Range = 225
+  ActiveControl = TipoComboBox
+  Caption = 'Inhunmi - Criar Novos Porta-Consumos'
+  Constraints.MaxHeight = 232
+  Constraints.MaxWidth = 398
+  Constraints.MinHeight = 232
+  Constraints.MinWidth = 398
+  PixelsPerInch = 75
+  TextHeight = 15
+  TextWidth = 7
+  inherited CancelarSpeedButton: TSpeedButton
+    Top = 192
+  end
+  inherited OkSpeedButton: TSpeedButton
+    Top = 192
+  end
+  inherited Bevel1: TBevel
+    Top = 176
+  end
+  object TipoLabel: TLabel
+    Left = 10
+    Top = 12
+    Width = 27
+    Height = 15
+    Caption = '&Tipo:'
+    FocusControl = TipoComboBox
+  end
+  object TipoComboBox: TComboBox
+    Left = 49
+    Top = 8
+    Width = 136
+    Height = 23
+    Style = csDropDownList
+    ItemHeight = 17
+    Items.Strings = (
+      'Cart'#227'o'
+      'Mesa'
+      'Balc'#227'o')
+    ItemIndex = 0
+    TabOrder = 1
+    Text = 'Cart'#227'o'
+  end
+  object VariosRadioButton: TRadioButton
+    Left = 208
+    Top = 40
+    Width = 185
+    Height = 17
+    Caption = '&V'#225'rios Porta-Consumos'
+    TabOrder = 2
+    TabStop = False
+  end
+  object GroupBox1: TGroupBox
+    Left = 8
+    Top = 40
+    Width = 385
+    Height = 49
+    Caption = '  &Intervalo  '
+    TabOrder = 3
+    object InicialSpinEdit: TSpinEdit
+      Left = 104
+      Top = 16
+      Width = 81
+      Height = 23
+      Max = 9999
+      Min = 1
+      TabOrder = 0
+      Value = 1
+      OnChanged = InicialSpinEditChanged
+    end
+    object FinalSpinEdit: TSpinEdit
+      Left = 297
+      Top = 16
+      Width = 79
+      Height = 23
+      Max = 9999
+      Min = 2
+      TabOrder = 1
+      Value = 2
+      OnChanged = FinalSpinEditChanged
+    end
+    object Label1: TLabel
+      Left = 8
+      Top = 20
+      Width = 83
+      Height = 15
+      Caption = 'N'#250'mero Inicial:'
+    end
+    object Label2: TLabel
+      Left = 208
+      Top = 20
+      Width = 78
+      Height = 15
+      Caption = 'N'#250'mero Final:'
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 8
+    Top = 101
+    Width = 385
+    Height = 73
+    Caption = ' O&p'#231#245'es  '
+    TabOrder = 4
+    object ExcluirInvalidosCheckBox: TCheckBox
+      Left = 6
+      Top = 17
+      Width = 371
+      Height = 25
+      Caption = '&Excluir n'#250'meros de Porta Consumos Inv'#225'lidos/Perdidos'
+      Checked = True
+      State = cbChecked
+      TabOrder = 0
+    end
+    object ExcluirAbertosCheckBox: TCheckBox
+      Left = 6
+      Top = 41
+      Width = 371
+      Height = 25
+      Caption = 'E&xcluir n'#250'meros de Porta Consumos j'#225' abertos'
+      Checked = True
+      State = cbChecked
+      TabOrder = 1
+    end
+  end
+end

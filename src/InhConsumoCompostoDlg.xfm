@@ -1,0 +1,146 @@
+object InhConsumoCompostoDlgForm: TInhConsumoCompostoDlgForm
+  Left = 334
+  Top = 182
+  Width = 464
+  Height = 384
+  HorzScrollBar.Range = 457
+  VertScrollBar.Range = 377
+  ActiveControl = ProdutoEdit
+  Caption = 'Inhunmi - Consumo Composto'
+  Color = clBackground
+  OnActivate = FormActivate
+  PixelsPerInch = 75
+  TextHeight = 15
+  TextWidth = 7
+  object ProdutoEdit: TEdit
+    Left = 96
+    Top = 8
+    Width = 361
+    Height = 23
+    Color = clNormalBackground
+    ReadOnly = True
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 16
+    Top = 40
+    Width = 72
+    Height = 15
+    Caption = 'Composicao:'
+  end
+  object DBGrid1: TDBGrid
+    Left = 8
+    Top = 160
+    Width = 449
+    Height = 217
+    TabOrder = 2
+    TitleFont.Color = clBlack
+    TitleFont.Height = 13
+    TitleFont.Name = 'Helvetica'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Style = []
+  end
+  object Label2: TLabel
+    Left = 40
+    Top = 12
+    Width = 46
+    Height = 15
+    Caption = 'Produto:'
+  end
+  object DBGrid2: TDBGrid
+    Left = 96
+    Top = 40
+    Width = 361
+    Height = 113
+    DataSource = ComposicaoDSource
+    Options = [dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgCancelOnExit]
+    ReadOnly = True
+    TabOrder = 4
+    TitleFont.Color = clBlack
+    TitleFont.Height = 13
+    TitleFont.Name = 'Helvetica'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'quantidade'
+        Width = 50
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'produto'
+        Width = 306
+        Visible = True
+      end>
+  end
+  object ComposicaoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT produto_composicao.quantidade AS quantidade, produto.desc' +
+      'ricao AS produto, produto.id AS id FROM produto_composicao, prod' +
+      'uto WHERE produto_composicao.composicao = produto.id AND produto' +
+      '_composicao.dono = :p_dono'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftString
+        Name = 'p_dono'
+        ParamType = ptInput
+        Value = '18'
+      end>
+    DBConnection = MainDM.MainConnection
+    Left = 8
+    Top = 56
+  end
+  object ConsumoDSet: TSQLClientDataSet
+    CommandText = 'SELECT * FROM consumo_meta_grupo WHERE dono = :p_dono'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'p_dono'
+        ParamType = ptInput
+      end>
+    DBConnection = MainDM.MainConnection
+    Left = 8
+    Top = 120
+  end
+  object ComposicaoDSource: TDataSource
+    DataSet = ComposicaoDSet
+    Left = 40
+    Top = 56
+  end
+  object ConsumoDSource: TDataSource
+    DataSet = ConsumoDSet
+    Left = 40
+    Top = 120
+  end
+  object ProdutoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT produto.id, produto.descricao FROM produto, produto_equiv' +
+      'alencia WHERE produto_equivalencia.dono = produto.id AND produto' +
+      '_equivalencia.equivalencia = :p_equivalencia'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftString
+        Name = 'p_equivalencia'
+        ParamType = ptInput
+      end>
+    DBConnection = MainDM.MainConnection
+    Left = 8
+    Top = 88
+  end
+  object ProdutoDSource: TDataSource
+    DataSet = ProdutoDSet
+    Left = 40
+    Top = 88
+  end
+end

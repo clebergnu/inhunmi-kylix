@@ -1,0 +1,52 @@
+object FormaPagamentoDM: TFormaPagamentoDM
+  OldCreateOrder = False
+  Left = 598
+  Top = 267
+  Height = 149
+  Width = 190
+  object FormaPagamentoDSet: TSQLClientDataSet
+    CommandText = 'forma_pagamento'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    UpdateMode = upWhereKeyOnly
+    AfterPost = FormaPagamentoDSetAfterPost
+    BeforeDelete = FormaPagamentoDSetBeforeDelete
+    AfterDelete = FormaPagamentoDSetAfterPost
+    CommandType = ctTable
+    DBConnection = MainDM.MainConnection
+    Left = 80
+    Top = 8
+    object FormaPagamentoDSetid: TSmallintField
+      DefaultExpression = '0'
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object FormaPagamentoDSetdescricao: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'descricao'
+      Required = True
+      FixedChar = True
+      Size = 40
+    end
+    object FormaPagamentoDSettipo_troco: TStringField
+      FieldName = 'tipo_troco'
+      FixedChar = True
+    end
+    object FormaPagamentoDSettipo_contra_vale: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'tipo_contra_vale'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+  end
+  object FormaPagamentoDSource: TDataSource
+    DataSet = FormaPagamentoDSet
+    Left = 80
+    Top = 88
+  end
+end

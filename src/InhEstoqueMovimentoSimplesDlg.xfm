@@ -1,0 +1,155 @@
+inherited InhEstoqueMovimentoSimplesDlgForm: TInhEstoqueMovimentoSimplesDlgForm
+  Left = 228
+  Top = 315
+  ActiveControl = ProdutoButton
+  Caption = 'Estoque - Movimento Simples'
+  ClientHeight = 224
+  ClientWidth = 460
+  Constraints.MaxHeight = 224
+  Constraints.MaxWidth = 460
+  Constraints.MinHeight = 224
+  Constraints.MinWidth = 460
+  PixelsPerInch = 75
+  inherited CancelarSpeedButton: TSpeedButton
+    Left = 235
+    Top = 184
+  end
+  inherited OkSpeedButton: TSpeedButton
+    Left = 347
+    Top = 184
+  end
+  inherited Bevel1: TBevel
+    Top = 168
+    Width = 449
+  end
+  object ProdutoButton: TButton
+    Left = 8
+    Top = 8
+    Width = 89
+    Height = 25
+    Caption = '&Produto:'
+    TabOrder = 0
+    OnClick = ProdutoButtonClick
+  end
+  object ProdutoIDEdit: TEdit
+    Left = 104
+    Top = 8
+    Width = 57
+    Height = 23
+    Color = clNormalBackground
+    TabOrder = 1
+  end
+  object ProdutoDescricaoEdit: TEdit
+    Left = 168
+    Top = 8
+    Width = 281
+    Height = 23
+    Color = clNormalBackground
+    TabOrder = 2
+  end
+  object DepartamentoLabel: TLabel
+    Left = 8
+    Top = 48
+    Width = 80
+    Height = 15
+    Caption = '&Departamento:'
+  end
+  object DeptoDbLookUpComboBox: TDBLookupComboBox
+    Left = 104
+    Top = 44
+    Width = 345
+    Height = 25
+    KeyField = 'id'
+    ListField = 'nome'
+    ListSource = DeptosDSource
+    TabOrder = 4
+    OnCloseUp = DeptoDbLookUpComboBoxCloseUp
+  end
+  object QuantidadeLabel: TLabel
+    Left = 24
+    Top = 84
+    Width = 68
+    Height = 15
+    Caption = '&Quantidade:'
+    FocusControl = QuantidadeEdit
+  end
+  object QuantidadeEdit: TEdit
+    Left = 104
+    Top = 80
+    Width = 57
+    Height = 23
+    TabOrder = 6
+  end
+  object ObservacoesLabel: TLabel
+    Left = 16
+    Top = 116
+    Width = 78
+    Height = 15
+    Caption = 'O&bserva'#231#245'es:'
+    FocusControl = ObservacoesEdit
+  end
+  object ObservacoesEdit: TEdit
+    Left = 104
+    Top = 112
+    Width = 345
+    Height = 23
+    MaxLength = 40
+    TabOrder = 8
+  end
+  object DeptosDSet: TSQLClientDataSet
+    CommandText = 'SELECT id, nome FROM departamento ORDER BY nome'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 8
+    Top = 184
+    object DeptosDSetid: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'id'
+      Required = True
+    end
+    object DeptosDSetnome: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'nome'
+      Required = True
+      FixedChar = True
+      Size = 40
+    end
+  end
+  object DeptosDSource: TDataSource
+    AutoEdit = False
+    DataSet = DeptosDSet
+    Left = 32
+    Top = 184
+  end
+  object ProdutoDSet: TSQLClientDataSet
+    CommandText = 'SELECT id, descricao FROM produto ORDER BY descricao'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 88
+    Top = 184
+    object ProdutoDSetid: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'id'
+      Required = True
+    end
+    object ProdutoDSetdescricao: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'descricao'
+      Required = True
+      FixedChar = True
+      Size = 40
+    end
+  end
+  object ProdutoDSource: TDataSource
+    AutoEdit = False
+    DataSet = ProdutoDSet
+    Left = 112
+    Top = 184
+  end
+end

@@ -1,0 +1,236 @@
+object CaixaFechamentoDM: TCaixaFechamentoDM
+  OldCreateOrder = False
+  Left = 650
+  Top = 224
+  Height = 414
+  Width = 318
+  object PortaConsumoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT * FROM porta_consumo WHERE status = '#39'Em Fechamento'#39' AND u' +
+      'suario = :acesso_id'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'acesso_id'
+        ParamType = ptInput
+      end>
+    UpdateMode = upWhereKeyOnly
+    OnCalcFields = PortaConsumoDSetCalcFields
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 8
+    object PortaConsumoDSetid: TIntegerField
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object PortaConsumoDSetnumero: TSmallintField
+      FieldName = 'numero'
+    end
+    object PortaConsumoDSetdono: TIntegerField
+      FieldName = 'dono'
+    end
+    object PortaConsumoDSetstatus: TStringField
+      FieldName = 'status'
+      Required = True
+      FixedChar = True
+      Size = 14
+    end
+    object PortaConsumoDSettipo: TStringField
+      FieldName = 'tipo'
+      Required = True
+      FixedChar = True
+      Size = 9
+    end
+    object PortaConsumoDSetdatahora: TSQLTimeStampField
+      FieldName = 'datahora'
+      Required = True
+    end
+    object PortaConsumoDSetusuario: TIntegerField
+      FieldName = 'usuario'
+    end
+    object PortaConsumoDSettotal_consumo: TCurrencyField
+      Alignment = taCenter
+      DisplayLabel = 'Total de Consumos'
+      FieldKind = fkCalculated
+      FieldName = 'total_consumos'
+      DisplayFormat = 'R$ #######0.00'
+      Calculated = True
+    end
+    object PortaConsumoDSettotal_pagamento: TCurrencyField
+      Alignment = taCenter
+      DisplayLabel = 'Total de Pagamentos'
+      FieldKind = fkCalculated
+      FieldName = 'total_pagamentos'
+      DisplayFormat = 'R$ #######0.00'
+      Calculated = True
+    end
+    object PortaConsumoDSetdatahora_inicial: TSQLTimeStampField
+      FieldName = 'datahora_inicial'
+      Required = True
+    end
+  end
+  object FormaPagamentoDSet: TSQLClientDataSet
+    CommandText = 'SELECT * FROM forma_pagamento'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    UpdateMode = upWhereKeyOnly
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 296
+  end
+  object FormaPagamentoDSource: TDataSource
+    DataSet = FormaPagamentoDSet
+    Left = 216
+    Top = 296
+  end
+  object PortaConsumoDSource: TDataSource
+    DataSet = PortaConsumoDSet
+    Left = 216
+    Top = 8
+  end
+  object ClientePendenteDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT pessoa_instituicao.nome, pessoa_instituicao.id FROM pesso' +
+      'a_instituicao, pessoa_instituicao_pessoa WHERE pessoa_instituica' +
+      'o.id  = pessoa_instituicao_pessoa.dono AND pessoa_instituicao.ti' +
+      'po_cliente_pendente = '#39'Sim'#39
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 352
+  end
+  object ClientePendenteDSource: TDataSource
+    DataSet = ClientePendenteDSet
+    Left = 216
+    Top = 352
+  end
+  object TotalConsumoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT dono, SUM(valor) as valor FROM consumo WHERE dono IN (0) ' +
+      'GROUP BY dono'
+    Aggregates = <>
+    AggregatesActive = True
+    AutoCalcFields = False
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 72
+    object TotalConsumoDSetdono: TIntegerField
+      FieldName = 'dono'
+      Required = True
+    end
+    object TotalConsumoDSetvalor: TFloatField
+      FieldName = 'valor'
+      DisplayFormat = 'R$ #######0.00'
+      Precision = 2
+    end
+    object TotalConsumoDSettotal: TAggregateField
+      Alignment = taRightJustify
+      FieldName = 'total'
+      Active = True
+      DisplayFormat = 'R$ #######0.00'
+      Expression = 'SUM(valor)'
+      Precision = 2
+    end
+  end
+  object TotalConsumoDSource: TDataSource
+    DataSet = TotalConsumoDSet
+    Left = 216
+    Top = 72
+  end
+  object PagoPreviamenteDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT dono, SUM(valor) as valor FROM porta_consumo_pagamento WH' +
+      'ERE dono IN (0) GROUP BY dono'
+    Aggregates = <>
+    AggregatesActive = True
+    AutoCalcFields = False
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 144
+    object PagoPreviamenteDSetdono: TIntegerField
+      FieldName = 'dono'
+      Required = True
+    end
+    object PagoPreviamenteDSetvalor: TFloatField
+      FieldName = 'valor'
+      DisplayFormat = 'R$ #######0.00'
+      Precision = 2
+    end
+    object PagoPreviamenteDSettotal: TAggregateField
+      Alignment = taRightJustify
+      FieldName = 'total'
+      Active = True
+      DisplayFormat = 'R$ #######0.00'
+      Expression = 'SUM(valor)'
+      Precision = 2
+    end
+  end
+  object PagoPreviamenteDSource: TDataSource
+    DataSet = PagoPreviamenteDSet
+    Left = 216
+    Top = 144
+  end
+  object PendentesDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT porta_consumo.datahora_inicial, pessoa_instituicao.nome, ' +
+      'porta_consumo.tipo, porta_consumo.id FROM porta_consumo, pessoa_' +
+      'instituicao WHERE porta_consumo.dono = pessoa_instituicao.id AND' +
+      ' porta_consumo.status = '#39'Pendente'#39
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 240
+    object PendentesDSetdatahora_inicial: TSQLTimeStampField
+      Alignment = taCenter
+      DisplayLabel = 'Data/Hora'
+      DisplayWidth = 18
+      FieldName = 'datahora_inicial'
+      Required = True
+    end
+    object PendentesDSetnome: TStringField
+      DisplayLabel = 'Cliente'
+      FieldName = 'nome'
+      Required = True
+      FixedChar = True
+      Size = 80
+    end
+    object PendentesDSettipo: TStringField
+      Alignment = taCenter
+      DisplayLabel = 'Tipo'
+      FieldName = 'tipo'
+      Required = True
+      FixedChar = True
+      Size = 9
+    end
+    object PendentesDSetid: TIntegerField
+      Alignment = taCenter
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+  end
+  object PendentesDSource: TDataSource
+    DataSet = PendentesDSet
+    Left = 216
+    Top = 240
+  end
+end

@@ -1,0 +1,24 @@
+object CompromissoDM: TCompromissoDM
+  OldCreateOrder = False
+  Left = 329
+  Top = 181
+  Height = 357
+  Width = 289
+  object CompromissoDSet: TSQLClientDataSet
+    CommandText = 'compromisso'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    UpdateMode = upWhereKeyOnly
+    CommandType = ctTable
+    DBConnection = MainDM.MainConnection
+    Left = 56
+    Top = 16
+  end
+  object CompromissoDSource: TDataSource
+    DataSet = CompromissoDSet
+    Left = 176
+    Top = 16
+  end
+end

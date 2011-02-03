@@ -1,0 +1,40 @@
+object ProdutoGrupoDM: TProdutoGrupoDM
+  OldCreateOrder = False
+  Left = 489
+  Top = 414
+  Height = 91
+  Width = 273
+  object ProdutoGrupoDSet: TSQLClientDataSet
+    CommandText = 'produto_grupo'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    UpdateMode = upWhereKeyOnly
+    AfterPost = ProdutoGrupoDSetAfterPost
+    BeforeDelete = ProdutoGrupoDSetBeforeDelete
+    CommandType = ctTable
+    DBConnection = MainDM.MainConnection
+    Left = 48
+    Top = 24
+    object ProdutoGrupoDSetid: TIntegerField
+      DefaultExpression = '0'
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object ProdutoGrupoDSetdescricao: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'descricao'
+      Required = True
+      FixedChar = True
+      Size = 40
+    end
+  end
+  object ProdutoGrupoDSource: TDataSource
+    DataSet = ProdutoGrupoDSet
+    Left = 184
+    Top = 24
+  end
+end

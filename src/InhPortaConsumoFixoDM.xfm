@@ -1,0 +1,100 @@
+object PortaConsumoFixoDM: TPortaConsumoFixoDM
+  OldCreateOrder = False
+  Left = 436
+  Top = 364
+  Height = 154
+  Width = 325
+  object PortaConsumoFixoDSet: TSQLClientDataSet
+    CommandText = 'SELECT * FROM porta_consumo_fixo'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    UpdateMode = upWhereKeyOnly
+    AfterPost = PortaConsumoFixoDSetAfterPost
+    BeforeDelete = PortaConsumoFixoDSetBeforeDelete
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 8
+    object PortaConsumoFixoDSetid: TIntegerField
+      DefaultExpression = '0'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object PortaConsumoFixoDSetnumero: TIntegerField
+      FieldName = 'numero'
+    end
+    object PortaConsumoFixoDSettipo: TStringField
+      DefaultExpression = #39'Cart'#227'o'#39
+      FieldName = 'tipo'
+      Required = True
+      FixedChar = True
+      Size = 6
+    end
+    object PortaConsumoFixoDSettipo_invalido: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'tipo_invalido'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object PortaConsumoFixoDSettipo_automatico: TStringField
+      DefaultExpression = #39'N'#227'o'#39
+      FieldName = 'tipo_automatico'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object PortaConsumoFixoDSetdono: TIntegerField
+      FieldName = 'dono'
+    end
+    object PortaConsumoFixoDSetobservacao: TStringField
+      FieldName = 'observacao'
+      FixedChar = True
+      Size = 40
+    end
+    object PortaConsumoFixoDSetdono_nome: TStringField
+      FieldKind = fkLookup
+      FieldName = 'dono_nome'
+      LookupDataSet = DonoDSet
+      LookupKeyFields = 'id'
+      LookupResultField = 'nome'
+      KeyFields = 'dono'
+      Size = 80
+      Lookup = True
+    end
+  end
+  object PortaConsumoFixoDSource: TDataSource
+    DataSet = PortaConsumoFixoDSet
+    Left = 216
+    Top = 8
+  end
+  object DonoDSet: TSQLClientDataSet
+    CommandText = 'SELECT id, nome FROM pessoa_instituicao'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    ReadOnly = True
+    DBConnection = MainDM.MainConnection
+    Left = 64
+    Top = 80
+    object DonoDSetid: TIntegerField
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object DonoDSetnome: TStringField
+      FieldName = 'nome'
+      Required = True
+      FixedChar = True
+      Size = 80
+    end
+  end
+  object DonoDSource: TDataSource
+    DataSet = DonoDSet
+    Left = 216
+    Top = 80
+  end
+end

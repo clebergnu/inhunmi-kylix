@@ -1,0 +1,156 @@
+inherited InhConsumoPropriedadesDlgForm: TInhConsumoPropriedadesDlgForm
+  Left = 313
+  Top = 313
+  Width = 335
+  Height = 216
+  HorzScrollBar.Range = 329
+  VertScrollBar.Range = 209
+  ActiveControl = IdDbEdit
+  Caption = 'Inhunmi - Propriedades do Consumo'
+  Constraints.MaxHeight = 216
+  Constraints.MaxWidth = 335
+  Constraints.MinHeight = 216
+  Constraints.MinWidth = 335
+  PixelsPerInch = 75
+  TextHeight = 15
+  TextWidth = 7
+  inherited CancelarSpeedButton: TSpeedButton
+    Left = 112
+    Top = 176
+  end
+  inherited OkSpeedButton: TSpeedButton
+    Left = 224
+    Top = 176
+  end
+  inherited Bevel1: TBevel
+    Top = 160
+    Width = 321
+  end
+  object IdLabel: TLabel
+    Left = 25
+    Top = 13
+    Width = 43
+    Height = 15
+    Caption = '&C'#243'digo:'
+    FocusControl = IdDbEdit
+  end
+  object IdDbEdit: TDBEdit
+    Left = 80
+    Top = 8
+    Width = 81
+    Height = 23
+    Color = clNormalBackground
+    DataField = 'id'
+    DataSource = ConsumoDSource
+    ReadOnly = True
+    TabOrder = 1
+  end
+  object QuantidadeLabel: TLabel
+    Left = 5
+    Top = 45
+    Width = 68
+    Height = 15
+    Caption = '&Quantidade:'
+    FocusControl = QuantidadeDbEdit
+  end
+  object QuantidadeDbEdit: TDBEdit
+    Left = 80
+    Top = 40
+    Width = 81
+    Height = 23
+    DataField = 'produto_quantidade'
+    DataSource = ConsumoDSource
+    TabOrder = 3
+  end
+  object ValorDbEdit: TDBEdit
+    Left = 232
+    Top = 41
+    Width = 97
+    Height = 23
+    DataField = 'valor'
+    DataSource = ConsumoDSource
+    TabOrder = 4
+  end
+  object ValorLabel: TLabel
+    Left = 192
+    Top = 45
+    Width = 33
+    Height = 15
+    Caption = '&Valor:'
+    FocusControl = ValorDbEdit
+  end
+  object DataHoraInicialLabel: TLabel
+    Left = 8
+    Top = 107
+    Width = 130
+    Height = 15
+    Caption = 'Data/Hora da inser'#231#227'o:'
+  end
+  object DataHoraFinalLabel: TLabel
+    Left = 8
+    Top = 139
+    Width = 134
+    Height = 15
+    Caption = 'Data/Hora da altera'#231#227'o:'
+  end
+  object DataHoraInicialDbEdit: TDBEdit
+    Left = 152
+    Top = 104
+    Width = 177
+    Height = 23
+    Color = clNormalBackground
+    DataField = 'datahora_inicial'
+    DataSource = ConsumoDSource
+    ReadOnly = True
+    TabOrder = 8
+  end
+  object DataHoraFinalDbEdit: TDBEdit
+    Left = 152
+    Top = 136
+    Width = 177
+    Height = 23
+    Color = clNormalBackground
+    DataField = 'datahora'
+    DataSource = ConsumoDSource
+    ReadOnly = True
+    TabOrder = 9
+  end
+  object UsuarioLabel: TLabel
+    Left = 176
+    Top = 12
+    Width = 45
+    Height = 15
+    Caption = '&Usu'#225'rio:'
+    FocusControl = UsuarioDbEdit
+  end
+  object UsuarioDbEdit: TDBEdit
+    Left = 232
+    Top = 8
+    Width = 97
+    Height = 23
+    DataField = 'usuario'
+    DataSource = ConsumoDSource
+    TabOrder = 11
+  end
+  object ConsumoDSource: TDataSource
+    DataSet = ConsumoDSet
+    Left = 40
+    Top = 176
+  end
+  object ConsumoDSet: TSQLClientDataSet
+    CommandText = 'SELECT * FROM consumo WHERE id = :p_id'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'p_id'
+        ParamType = ptInput
+      end>
+    UpdateMode = upWhereKeyOnly
+    DBConnection = MainDM.MainConnection
+    Left = 8
+    Top = 176
+  end
+end

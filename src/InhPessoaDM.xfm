@@ -1,0 +1,431 @@
+object PessoaDM: TPessoaDM
+  OldCreateOrder = False
+  Left = 588
+  Top = 209
+  Height = 474
+  Width = 377
+  object PessoaDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT * FROM pessoa_instituicao_pessoa WHERE dono = :pessoa_ins' +
+      'tituicao_id'
+    Aggregates = <>
+    AutoCalcFields = False
+    FetchOnDemand = False
+    IndexFieldNames = 'dono'
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftString
+        Name = 'pessoa_instituicao_id'
+        ParamType = ptInput
+      end>
+    BeforeEdit = PessoaDSetBeforeEdit
+    BeforePost = DetailBeforePost
+    AfterPost = DetailAfterPost
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 62
+    object PessoaDSetdono: TIntegerField
+      ConstraintErrorMessage = 'Valor do campo "C'#243'digo Pessoa/Insitui'#231#227'o" inv'#225'lido'
+      DisplayLabel = 'C'#243'digo Pessoa/Insitui'#231#227'o'
+      FieldName = 'dono'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object PessoaDSettratamento: TStringField
+      ConstraintErrorMessage = 'Valor do campo "Tratamento" inv'#225'lido'
+      DefaultExpression = #39'Sr.'#39
+      DisplayLabel = 'Tratamento'
+      FieldName = 'tratamento'
+      Required = True
+      FixedChar = True
+      Size = 5
+    end
+    object PessoaDSetnome_favorito: TStringField
+      ConstraintErrorMessage = 'Valor do campo "Nome Favorito" inv'#225'lido'
+      DisplayLabel = 'Nome Favorito'
+      FieldName = 'nome_favorito'
+      FixedChar = True
+    end
+    object PessoaDSetdata_nascimento: TDateField
+      ConstraintErrorMessage = 'Valor do campo "Data de Nascimento" inv'#225'lido'
+      DisplayLabel = 'Data de Nascimento'
+      FieldName = 'data_nascimento'
+      EditMask = '!00/00/0000;1; '
+    end
+    object PessoaDSetrg: TStringField
+      ConstraintErrorMessage = 'Valor do campo "R.G." inv'#225'lido'
+      DisplayLabel = 'R.G.'
+      FieldName = 'rg'
+      FixedChar = True
+      Size = 11
+    end
+    object PessoaDSetcpf: TStringField
+      ConstraintErrorMessage = 'Valor do campo "C.P.F." inv'#225'lido'
+      DisplayLabel = 'C.P.F.'
+      FieldName = 'cpf'
+      FixedChar = True
+      Size = 11
+    end
+  end
+  object PessoaDSource: TDataSource
+    DataSet = PessoaDSet
+    Left = 249
+    Top = 64
+  end
+  object FoneDSource: TDataSource
+    DataSet = FoneDSet
+    Left = 257
+    Top = 157
+  end
+  object FoneDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT * FROM pessoa_instituicao_telefone WHERE dono = :pessoa_i' +
+      'nstituicao_id'
+    Aggregates = <>
+    FetchOnDemand = False
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pessoa_instituicao_id'
+        ParamType = ptInput
+      end>
+    BeforePost = DetailBeforePost
+    AfterPost = DetailAfterPost
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 157
+    object FoneDSetid: TIntegerField
+      AutoGenerateValue = arDefault
+      DefaultExpression = '0'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object FoneDSetdono: TIntegerField
+      FieldName = 'dono'
+      Required = True
+    end
+    object FoneDSettipo: TStringField
+      AutoGenerateValue = arDefault
+      DefaultExpression = #39'Residencial'#39
+      FieldName = 'tipo'
+      FixedChar = True
+      Size = 11
+    end
+    object FoneDSetddd: TBCDField
+      FieldName = 'ddd'
+      Precision = 4
+      Size = 0
+    end
+    object FoneDSetnumero: TBCDField
+      FieldName = 'numero'
+      Required = True
+      Precision = 9
+      Size = 0
+    end
+  end
+  object EMailDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT * FROM pessoa_instituicao_email WHERE dono = :pessoa_inst' +
+      'ituicao_id'
+    Aggregates = <>
+    FetchOnDemand = False
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pessoa_instituicao_id'
+        ParamType = ptInput
+      end>
+    BeforePost = DetailBeforePost
+    AfterPost = DetailAfterPost
+    DBConnection = MainDM.MainConnection
+    Left = 73
+    Top = 253
+    object EMailDSetid: TIntegerField
+      DefaultExpression = '0'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object EMailDSetdono: TIntegerField
+      FieldName = 'dono'
+      Required = True
+    end
+    object EMailDSetemail: TStringField
+      FieldName = 'email'
+      Required = True
+      FixedChar = True
+      Size = 40
+    end
+    object EMailDSettipo: TStringField
+      FieldName = 'tipo'
+      FixedChar = True
+      Size = 9
+    end
+    object EMailDSetfavorito: TStringField
+      FieldName = 'favorito'
+      FixedChar = True
+      Size = 3
+    end
+  end
+  object EMailDSource: TDataSource
+    DataSet = EMailDSet
+    Left = 257
+    Top = 256
+  end
+  object EnderecoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT * FROM pessoa_instituicao_endereco WHERE dono = :pessoa_i' +
+      'nstituicao_id'
+    Aggregates = <>
+    FetchOnDemand = False
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pessoa_instituicao_id'
+        ParamType = ptInput
+      end>
+    BeforePost = DetailBeforePost
+    AfterPost = DetailAfterPost
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 208
+    object EnderecoDSetid: TIntegerField
+      DefaultExpression = '0'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object EnderecoDSetdono: TIntegerField
+      FieldName = 'dono'
+      Required = True
+    end
+    object EnderecoDSetendereco_logradouro: TStringField
+      FieldName = 'endereco_logradouro'
+      Required = True
+      FixedChar = True
+      Size = 40
+    end
+    object EnderecoDSetendereco_numero: TStringField
+      FieldName = 'endereco_numero'
+      Required = True
+      FixedChar = True
+      Size = 8
+    end
+    object EnderecoDSetendereco_apartamento: TStringField
+      FieldName = 'endereco_apartamento'
+      FixedChar = True
+      Size = 6
+    end
+    object EnderecoDSetendereco_complemento: TStringField
+      FieldName = 'endereco_complemento'
+      FixedChar = True
+      Size = 10
+    end
+    object EnderecoDSetendereco_cep: TStringField
+      FieldName = 'endereco_cep'
+      FixedChar = True
+      Size = 10
+    end
+    object EnderecoDSetendereco_bairro: TStringField
+      FieldName = 'endereco_bairro'
+      FixedChar = True
+    end
+    object EnderecoDSetendereco_referencia: TStringField
+      FieldName = 'endereco_referencia'
+      FixedChar = True
+    end
+  end
+  object EnderecoDSource: TDataSource
+    DataSet = EnderecoDSet
+    Left = 256
+    Top = 208
+  end
+  object ContatoParentescoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT * FROM pessoa_instituicao_contato_parentesco WHERE dono =' +
+      ' :pessoa_instituicao_id'
+    Aggregates = <>
+    FetchOnDemand = False
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pessoa_instituicao_id'
+        ParamType = ptInput
+      end>
+    BeforePost = DetailBeforePost
+    AfterPost = DetailAfterPost
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 304
+    object ContatoParentescoDSetid: TIntegerField
+      DefaultExpression = '0'
+      DisplayLabel = 'C'#243'digo Contato/Parmntesco'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object ContatoParentescoDSetdono: TIntegerField
+      DisplayLabel = 'C'#243'digo Dono'
+      FieldName = 'dono'
+      Required = True
+    end
+    object ContatoParentescoDSetcontato_parente: TIntegerField
+      DisplayLabel = 'C'#243'digo Contato/Parente'
+      FieldName = 'contato_parente'
+      Required = True
+    end
+    object ContatoParentescoDSettipo: TStringField
+      DisplayLabel = 'Tipo'
+      FieldName = 'tipo'
+      Required = True
+      FixedChar = True
+      Size = 17
+    end
+    object ContatoParentescoDSetcontato_parente_nome: TStringField
+      DisplayLabel = 'Pessoa'
+      FieldKind = fkLookup
+      FieldName = 'contato_parente_nome'
+      LookupDataSet = ContatoParentescoNomeDSet
+      LookupKeyFields = 'id'
+      LookupResultField = 'nome'
+      KeyFields = 'contato_parente'
+      Size = 40
+      Lookup = True
+    end
+  end
+  object ContatoParentescoDSource: TDataSource
+    DataSet = ContatoParentescoDSet
+    Left = 256
+    Top = 304
+  end
+  object ContatoParentescoNomeDSet: TSQLClientDataSet
+    CommandText = 'SELECT id, nome FROM pessoa_instituicao'
+    Aggregates = <>
+    FetchOnDemand = False
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    ReadOnly = True
+    UpdateMode = upWhereKeyOnly
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 416
+    object ContatoParentescoNomeDSetid: TIntegerField
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object ContatoParentescoNomeDSetnome: TStringField
+      FieldName = 'nome'
+      Required = True
+      FixedChar = True
+      Size = 60
+    end
+  end
+  object ContatoParentescoNomeDSource: TDataSource
+    DataSet = ContatoParentescoNomeDSet
+    Left = 256
+    Top = 416
+  end
+  object PessoaInstituicaoDSource: TDataSource
+    DataSet = PessoaInstituicaoDSet
+    Left = 248
+    Top = 8
+  end
+  object PessoaInstituicaoDSet: TSQLClientDataSet
+    CommandText = 'SELECT * FROM pessoa_instituicao WHERE tipo = "Pessoa"'
+    Aggregates = <>
+    AutoCalcFields = False
+    FetchOnDemand = False
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    AfterPost = PessoaInstituicaoDSetAfterPost
+    BeforeDelete = PessoaInstituicaoDSetBeforeDelete
+    DBConnection = MainDM.MainConnection
+    Left = 72
+    Top = 8
+    object PessoaInstituicaoDSetid: TIntegerField
+      ConstraintErrorMessage = 'Valor do campo "C'#243'digo" inv'#225'lido'
+      DefaultExpression = '0'
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object PessoaInstituicaoDSetnome: TStringField
+      ConstraintErrorMessage = 'Valor do campo "Nome" inv'#225'lido'
+      DisplayLabel = 'Nome'
+      FieldName = 'nome'
+      Required = True
+      FixedChar = True
+      Size = 80
+    end
+    object PessoaInstituicaoDSettipo: TStringField
+      AutoGenerateValue = arDefault
+      ConstraintErrorMessage = 'Valor do campo "Tipo" inv'#225'lido'
+      DefaultExpression = #39'Pessoa'#39
+      DisplayLabel = 'Tipo'
+      FieldName = 'tipo'
+      Required = True
+      FixedChar = True
+      Size = 11
+    end
+    object PessoaInstituicaoDSettipo_cliente: TStringField
+      AutoGenerateValue = arDefault
+      DefaultExpression = #39'N'#227'o'#39
+      DisplayLabel = 'Tipo Cliente'
+      FieldName = 'tipo_cliente'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object PessoaInstituicaoDSettipo_cliente_vip: TStringField
+      AutoGenerateValue = arDefault
+      DefaultExpression = #39'N'#227'o'#39
+      DisplayLabel = 'Tipo Cliente VIP'
+      FieldName = 'tipo_cliente_vip'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object PessoaInstituicaoDSettipo_cliente_pendente: TStringField
+      AutoGenerateValue = arDefault
+      DefaultExpression = #39'N'#227'o'#39
+      DisplayLabel = 'Tipo Cliente Pendente'
+      FieldName = 'tipo_cliente_pendente'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object PessoaInstituicaoDSettipo_funcionario: TStringField
+      AutoGenerateValue = arDefault
+      DefaultExpression = #39'N'#227'o'#39
+      DisplayLabel = 'Tipo Funcion'#225'rio'
+      FieldName = 'tipo_funcionario'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object PessoaInstituicaoDSettipo_fornecedor: TStringField
+      AutoGenerateValue = arDefault
+      DefaultExpression = #39'N'#227'o'#39
+      DisplayLabel = 'Tipo Fornecedor'
+      FieldName = 'tipo_fornecedor'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+  end
+end

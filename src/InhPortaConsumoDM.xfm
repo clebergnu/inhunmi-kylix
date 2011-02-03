@@ -1,0 +1,223 @@
+object PortaConsumoDM: TPortaConsumoDM
+  OldCreateOrder = False
+  Left = 609
+  Top = 189
+  Height = 381
+  Width = 311
+  object PortaConsumoDSet: TSQLClientDataSet
+    CommandText = 'SELECT * FROM porta_consumo WHERE id = 0'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    ReadOnly = True
+    UpdateMode = upWhereKeyOnly
+    AfterPost = PortaConsumoDSetAfterPost
+    DBConnection = MainDM.MainConnection
+    Left = 56
+    Top = 16
+  end
+  object PortaConsumoDSource: TDataSource
+    DataSet = PortaConsumoDSet
+    Left = 200
+    Top = 16
+  end
+  object ConsumoDSet: TSQLClientDataSet
+    CommandText = 'SELECT * FROM consumo WHERE dono = :porta_consumo_id'
+    Aggregates = <>
+    AggregatesActive = True
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'porta_consumo_id'
+        ParamType = ptInput
+      end>
+    UpdateMode = upWhereKeyOnly
+    DBConnection = MainDM.MainConnection
+    Left = 56
+    Top = 72
+    object ConsumoDSetid: TIntegerField
+      DefaultExpression = '0'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object ConsumoDSetdono: TIntegerField
+      FieldName = 'dono'
+      Required = True
+    end
+    object ConsumoDSetproduto: TIntegerField
+      FieldName = 'produto'
+      Required = True
+    end
+    object ConsumoDSetproduto_quantidade: TIntegerField
+      FieldName = 'produto_quantidade'
+      Required = True
+    end
+    object ConsumoDSetvalor: TFloatField
+      FieldName = 'valor'
+      Required = True
+    end
+    object ConsumoDSetdatahora: TSQLTimeStampField
+      FieldName = 'datahora'
+      Required = True
+    end
+    object ConsumoDSetdatahora_inicial: TSQLTimeStampField
+      FieldName = 'datahora_inicial'
+      Required = True
+    end
+    object ConsumoDSetdepartamento_venda: TIntegerField
+      FieldName = 'departamento_venda'
+    end
+    object ConsumoDSetusuario: TIntegerField
+      FieldName = 'usuario'
+      Required = True
+    end
+    object ConsumoDSetproduto_descricao: TStringField
+      FieldKind = fkLookup
+      FieldName = 'produto_descricao'
+      LookupDataSet = ProdutoDSet
+      LookupKeyFields = 'id'
+      LookupResultField = 'descricao'
+      KeyFields = 'produto'
+      Size = 40
+      Lookup = True
+    end
+    object ConsumoDSettotal: TAggregateField
+      FieldName = 'total'
+      Active = True
+      Expression = 'SUM(valor)'
+    end
+  end
+  object ConsumoDSource: TDataSource
+    DataSet = ConsumoDSet
+    Left = 200
+    Top = 72
+  end
+  object PagamentoDSet: TSQLClientDataSet
+    CommandText = 
+      'SELECT * FROM porta_consumo_pagamento WHERE dono = :porta_consum' +
+      'o_id'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'porta_consumo_id'
+        ParamType = ptInput
+      end>
+    ReadOnly = True
+    UpdateMode = upWhereKeyOnly
+    DBConnection = MainDM.MainConnection
+    Left = 56
+    Top = 200
+    object PagamentoDSetid: TIntegerField
+      DefaultExpression = '0'
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object PagamentoDSetdono: TIntegerField
+      FieldName = 'dono'
+      Required = True
+    end
+    object PagamentoDSetforma_pagamento: TIntegerField
+      FieldName = 'forma_pagamento'
+      Required = True
+    end
+    object PagamentoDSetvalor: TFloatField
+      FieldName = 'valor'
+      Required = True
+    end
+    object PagamentoDSetdatahora: TSQLTimeStampField
+      FieldName = 'datahora'
+      Required = True
+    end
+    object PagamentoDSetdatahora_inicial: TSQLTimeStampField
+      FieldName = 'datahora_inicial'
+      Required = True
+    end
+    object PagamentoDSetusuario: TIntegerField
+      FieldName = 'usuario'
+      Required = True
+    end
+    object PagamentoDSetforma_pagamento_descricao: TStringField
+      FieldKind = fkLookup
+      FieldName = 'forma_pagamento_descricao'
+      LookupDataSet = FormaPagamentoDSet
+      LookupKeyFields = 'id'
+      LookupResultField = 'descricao'
+      KeyFields = 'forma_pagamento'
+      Size = 40
+      Lookup = True
+    end
+  end
+  object PagamentoDSource: TDataSource
+    DataSet = PagamentoDSet
+    Left = 200
+    Top = 200
+  end
+  object DonoDSet: TSQLClientDataSet
+    CommandText = 'SELECT * FROM pessoa_instituicao WHERE id = :porta_consumo_dono'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'porta_consumo_dono'
+        ParamType = ptInput
+      end>
+    ReadOnly = True
+    UpdateMode = upWhereKeyOnly
+    DBConnection = MainDM.MainConnection
+    Left = 56
+    Top = 320
+  end
+  object DonoDSource: TDataSource
+    DataSet = DonoDSet
+    Left = 200
+    Top = 320
+  end
+  object ProdutoDSet: TSQLClientDataSet
+    Active = True
+    CommandText = 
+      'SELECT id, descricao FROM produto WHERE tipo_vendido = '#39'Sim'#39' AND' +
+      ' tipo_generalizado = '#39'N'#227'o'#39
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    ReadOnly = True
+    UpdateMode = upWhereKeyOnly
+    DBConnection = MainDM.MainConnection
+    Left = 56
+    Top = 128
+  end
+  object FormaPagamentoDSet: TSQLClientDataSet
+    Active = True
+    CommandText = 'SELECT id, descricao FROM forma_pagamento'
+    Aggregates = <>
+    Options = [poAllowCommandText]
+    ObjectView = True
+    Params = <>
+    ReadOnly = True
+    UpdateMode = upWhereKeyOnly
+    DBConnection = MainDM.MainConnection
+    Left = 56
+    Top = 256
+  end
+  object ProdutoDSource: TDataSource
+    DataSet = ProdutoDSet
+    Left = 200
+    Top = 128
+  end
+  object FormaPagamentoDSource: TDataSource
+    DataSet = FormaPagamentoDSet
+    Left = 200
+    Top = 256
+  end
+end
